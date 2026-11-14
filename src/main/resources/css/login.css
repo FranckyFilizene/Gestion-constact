@@ -1,0 +1,206 @@
+
+/* =========================================
+   GESTION DES CONTACTS - ATSIMO ANDREFANA
+   THEME : NAVY BLUE / WHITE
+========================================= */
+
+/* FOND PRINCIPAL */
+.root-pane {
+    -fx-background-color: #eef2f7;
+    -fx-font-family: "Segoe UI";
+}
+
+/* CONTENEUR PRINCIPAL */
+.main-container {
+    -fx-background-color: white;
+    -fx-background-radius: 18px;
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(15, 23, 42, 0.16),
+            28, 0.15, 0, 8
+    );
+}
+
+/* =========================================
+   PANNEAU GAUCHE
+========================================= */
+
+.brand-panel {
+    -fx-background-color: linear-gradient(
+            to bottom right,
+            #102c50,
+            #174b83
+    );
+    -fx-background-radius: 18px 0 0 18px;
+}
+
+.brand-logo {
+    -fx-background-color: rgba(255,255,255,0.13);
+    -fx-background-radius: 14px;
+    -fx-padding: 15px 22px;
+    -fx-text-fill: white;
+    -fx-font-size: 27px;
+    -fx-font-weight: bold;
+}
+
+.brand-title {
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.brand-subtitle {
+    -fx-text-fill: #93c5fd;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-letter-spacing: 1.5px;
+}
+
+.brand-description {
+    -fx-text-fill: #dbeafe;
+    -fx-font-size: 13px;
+    -fx-line-spacing: 6px;
+}
+
+.feature-list {
+    -fx-padding: 15px 0 0 0;
+}
+
+.feature-label {
+    -fx-text-fill: #e0ecff;
+    -fx-font-size: 13px;
+}
+
+.copyright-label {
+    -fx-text-fill: #9db8d8;
+    -fx-font-size: 10px;
+    -fx-padding: 25px 0 0 0;
+}
+
+/* =========================================
+   PANNEAU DROIT
+========================================= */
+
+.form-panel {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 0 18px 18px 0;
+}
+
+/* TITRES */
+.title-label {
+    -fx-text-fill: #142d4e;
+    -fx-font-size: 27px;
+    -fx-font-weight: bold;
+}
+
+.subtitle-label {
+    -fx-text-fill: #8492a6;
+    -fx-font-size: 12px;
+}
+
+/* LABELS */
+.field-label {
+    -fx-text-fill: #34445c;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+/* CHAMPS DE SAISIE */
+.input-field {
+    -fx-background-color: #f7f9fc;
+    -fx-border-color: #dce4ee;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 0 14px;
+    -fx-font-size: 12px;
+    -fx-text-fill: #263b55;
+    -fx-prompt-text-fill: #a5b0bf;
+}
+
+.input-field:focused {
+    -fx-background-color: white;
+    -fx-border-color: #2874c7;
+    -fx-border-width: 1.5px;
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(40, 116, 199, 0.12),
+            8, 0, 0, 2
+    );
+}
+
+/* BOUTON PRINCIPAL */
+.primary-button {
+    -fx-background-color: #1e5da8;
+    -fx-background-radius: 8px;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.primary-button:hover {
+    -fx-background-color: #174b89;
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(30, 93, 168, 0.25),
+            10, 0, 0, 3
+    );
+}
+
+.primary-button:pressed {
+    -fx-background-color: #103d72;
+}
+
+/* LIEN INSCRIPTION */
+.switch-label {
+    -fx-text-fill: #7b8798;
+    -fx-font-size: 11px;
+}
+
+.switch-link {
+    -fx-text-fill: #1e63ad;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-border-color: transparent;
+    -fx-underline: false;
+}
+
+.switch-link:hover {
+    -fx-text-fill: #103d72;
+    -fx-underline: true;
+}
+
+/* CHECKBOX AFFICHER MOT DE PASSE */
+.password-checkbox {
+    -fx-text-fill: #8492a6;
+    -fx-font-size: 11px;
+    -fx-cursor: hand;
+}
+
+.password-checkbox .box {
+    -fx-background-color: #f7f9fc;
+    -fx-border-color: #cbd5e1;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+}
+
+.password-checkbox:selected .box {
+    -fx-background-color: #1e5da8;
+    -fx-border-color: #1e5da8;
+}
+
+.password-checkbox:selected .mark {
+    -fx-background-color: white;
+}
+
+.password-checkbox:hover .box {
+    -fx-border-color: #1e5da8;
+}
+
+/* MESSAGE */
+.error-label {
+    -fx-text-fill: #dc3545;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
