@@ -67,7 +67,7 @@ public class CentreVoteService {
                         admin != null ? admin.getId() : null,
                         ActionJournal.CREATION,
                         "centre_vote",
-                        0,
+                        cv.getId() != null ? cv.getId() : 0L,
                         "Création du centre de vote : " + cv.getNom() + " (Commune ID: " + cv.getCommuneId() + ")"
                 );
             }

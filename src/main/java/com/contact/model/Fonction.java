@@ -7,6 +7,9 @@ public class Fonction {
     private String niveauCible;
     private boolean actif = true;
 
+    // Ajouté pour stocker directement le code (ex: 'SUSP', 'ADMIN', etc.) récupéré par jointure SQL
+    private String categorieCode;
+
     public Fonction() {}
 
     public Fonction(Long id, String libelle, Long categorieId,
@@ -28,4 +31,13 @@ public class Fonction {
     public void setNiveauCible(String niveauCible) { this.niveauCible = niveauCible; }
     public boolean isActif() { return actif; }
     public void setActif(boolean actif) { this.actif = actif; }
+
+    // Nouveaux Getters et Setters pour le code de la catégorie
+    public String getCategorieCode() { return categorieCode; }
+    public void setCategorieCode(String categorieCode) { this.categorieCode = categorieCode; }
+
+    @Override
+    public String toString() {
+        return libelle;
+    }
 }

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefWidth="720.0" spacing="12.0" styleClass="form-root" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.contact.controller.AnnexeContactFormController">
+
+    <padding>
+        <Insets bottom="18" left="24" right="24" top="16" />
+    </padding>
+
+    <children>
+
+        <!-- ==================== EN-TÊTE ==================== -->
+        <HBox alignment="CENTER_LEFT" spacing="10.0">
+            <children>
+                <VBox spacing="2.0">
+                    <children>
+                        <Label styleClass="form-title" text="Nouveau contact - Annexe &amp; Limitrophe" />
+                        <Label styleClass="form-subtitle" text="Système de Sécurité Dina (SSD) · Régions Extérieures" />
+                    </children>
+                </VBox>
+
+                <Region HBox.hgrow="ALWAYS" />
+
+                <Button fx:id="btnClose" mnemonicParsing="false" onAction="#fermerFenetre" styleClass="btn-close" text="✕" />
+            </children>
+        </HBox>
+
+        <!-- ==================== IDENTITÉ ==================== -->
+        <VBox spacing="6.0">
+            <children>
+                <Label maxWidth="Infinity" styleClass="form-section-title" text="IDENTITÉ &amp; FONCTION" />
+
+                <GridPane hgap="14.0" vgap="8.0">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="50.0" />
+                        <ColumnConstraints percentWidth="50.0" />
+                    </columnConstraints>
+
+                    <children>
+                        <VBox spacing="3.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                            <children>
+                                <Label styleClass="field-label" text="Nom *" />
+                                <TextField fx:id="txtNom" promptText="Ex : RAKOTO" />
+                            </children>
+                        </VBox>
+
+                        <VBox spacing="3.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                            <children>
+                                <Label styleClass="field-label" text="Prénom(s)" />
+                                <TextField fx:id="txtPrenom" promptText="Ex : Jean" />
+                            </children>
+                        </VBox>
+
+                        <VBox spacing="3.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                            <children>
+                                <Label styleClass="field-label" text="Fonction (Annexe / Forces de l'ordre) *" />
+                                <ComboBox fx:id="cmbFonction" maxWidth="Infinity" promptText="Sélectionner une fonction..." />
+                            </children>
+                        </VBox>
+
+                        <VBox spacing="3.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                            <children>
+                                <Label styleClass="field-label" text="Organisation / Structure (Optionnel)" />
+                                <ComboBox fx:id="cmbOrganisation" maxWidth="Infinity" promptText="Aucune structure particulière" />
+                            </children>
+                        </VBox>
+                    </children>
+                    <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                    </rowConstraints>
+                </GridPane>
+            </children>
+        </VBox>
+
+        <!-- ==================== DÉCOUPAGE TERRITORIAL LIMITROPHE ==================== -->
+        <VBox spacing="6.0">
+            <children>
+                <Label maxWidth="Infinity" styleClass="form-section-title" text="DÉCOUPAGE TERRITORIAL (RÉGIONS LIMITROPHES)" />
+
+                <GridPane hgap="10.0" vgap="8.0">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="25.0" />
+                        <ColumnConstraints percentWidth="25.0" />
+                        <ColumnConstraints percentWidth="25.0" />
+                        <ColumnConstraints percentWidth="25.0" />
+                    </columnConstraints>
+
+                    <children>
+                        <VBox spacing="3.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                            <children>
+                                <Label styleClass="field-label" text="1. Région Limitrophe *" />
+                                <ComboBox fx:id="cmbRegionLimitrophe" maxWidth="Infinity" promptText="Choisir région..." />
+                            </children>
+                        </VBox>
+
+                        <VBox spacing="3.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                            <children>
+                                <Label styleClass="field-label" text="2. District *" />
+                                <ComboBox fx:id="cmbDistrict" disable="true" maxWidth="Infinity" promptText="Choisir district..." />
+                            </children>
+                        </VBox>
+
+                        <VBox spacing="3.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                            <children>
+                                <Label styleClass="field-label" text="3. Commune" />
+                                <ComboBox fx:id="cmbCommune" disable="true" maxWidth="Infinity" promptText="Choisir commune..." />
+                            </children>
+                        </VBox>
+
+                        <VBox spacing="3.0" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                            <children>
+                                <Label styleClass="field-label" text="4. Fokotany (FKT)" />
+                                <ComboBox fx:id="cmbFokotany" disable="true" maxWidth="Infinity" promptText="Choisir fokotany..." />
+                            </children>
+                        </VBox>
+                    </children>
+                    <rowConstraints>
+                        <RowConstraints />
+                    </rowConstraints>
+                </GridPane>
+            </children>
+        </VBox>
+
+        <!-- ==================== COORDONNÉES ==================== -->
+        <VBox spacing="6.0">
+            <children>
+                <Label maxWidth="Infinity" styleClass="form-section-title" text="COORDONNÉES" />
+
+                <GridPane hgap="14.0">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="33.33" />
+                        <ColumnConstraints percentWidth="33.33" />
+                        <ColumnConstraints percentWidth="33.34" />
+                    </columnConstraints>
+
+                    <children>
+                        <VBox spacing="3.0" GridPane.columnIndex="0">
+                            <children>
+                                <Label styleClass="field-label" text="Téléphone principal *" />
+                                <TextField fx:id="txtTelephone1" promptText="+261 34 XX XXX XX" />
+                            </children>
+                        </VBox>
+
+                        <VBox spacing="3.0" GridPane.columnIndex="1">
+                            <children>
+                                <Label styleClass="field-label" text="Téléphone alternatif" />
+                                <TextField fx:id="txtTelephone2" promptText="+261 32 XX XXX XX" />
+                            </children>
+                        </VBox>
+
+                        <VBox spacing="3.0" GridPane.columnIndex="2">
+                            <children>
+                                <Label styleClass="field-label" text="Email professionnel" />
+                                <TextField fx:id="txtEmail" promptText="nom@domaine.mg" />
+                            </children>
+                        </VBox>
+                    </children>
+                    <rowConstraints>
+                        <RowConstraints />
+                    </rowConstraints>
+                </GridPane>
+            </children>
+        </VBox>
+
+        <!-- ==================== INFORMATIONS COMPLÉMENTAIRES ==================== -->
+        <VBox spacing="6.0">
+            <children>
+                <Label maxWidth="Infinity" styleClass="form-section-title" text="INFORMATIONS COMPLÉMENTAIRES" />
+
+                <GridPane hgap="14.0">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="50.0" />
+                        <ColumnConstraints percentWidth="50.0" />
+                    </columnConstraints>
+
+                    <children>
+                        <VBox spacing="3.0" GridPane.columnIndex="0">
+                            <children>
+                                <Label styleClass="field-label" text="Observations &amp; Instructions" />
+                                <TextArea fx:id="txtObservation" prefHeight="62.0" promptText="Horaires, consignes..." wrapText="true" />
+                            </children>
+                        </VBox>
+
+                        <VBox spacing="3.0" GridPane.columnIndex="1">
+                            <children>
+                                <Label fx:id="lblMotifTitre" styleClass="field-label" text="Motif (réservé aux cas signalés / suspects)" />
+                                <TextArea fx:id="txtMotif" prefHeight="62.0" promptText="Préciser le motif si nécessaire..." wrapText="true" />
+                            </children>
+                        </VBox>
+                    </children>
+                    <rowConstraints>
+                        <RowConstraints />
+                    </rowConstraints>
+                </GridPane>
+            </children>
+        </VBox>
+
+        <!-- ==================== BOUTONS D'ACTION ==================== -->
+        <HBox alignment="CENTER_RIGHT" spacing="10.0">
+            <padding>
+                <Insets top="4" />
+            </padding>
+            <children>
+                <Button cancelButton="true" minWidth="90.0" mnemonicParsing="false" onAction="#fermerFenetre" styleClass="btn-cancel" text="Annuler" />
+                <Button defaultButton="true" minWidth="130.0" mnemonicParsing="false" onAction="#enregistrerContact" styleClass="btn-save" text="Enregistrer" />
+            </children>
+        </HBox>
+
+    </children>
+   <stylesheets>
+      <URL value="@../css/contact-form.css" />
+      <URL value="@../css/annexeform.css" />
+   </stylesheets>
+</VBox>

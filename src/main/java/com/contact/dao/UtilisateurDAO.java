@@ -76,6 +76,26 @@ public class UtilisateurDAO {
     }
 
     /**
+     * Met à jour le rôle d'un utilisateur par son ID.
+     */
+    public boolean mettreAJourRole(long id, Role nouveauRole) {
+        String sql = "UPDATE utilisateur SET role = ? WHERE id = ?";
+
+        try (Connection conn = Database.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, nouveauRole.name());
+            pstmt.setLong(2, id);
+
+            int affectedRows = pstmt.executeUpdate();
+            return affectedRows > 0;
+
+        } catch (SQLException e) {
+            throw new DaoException("Erreur lors de la mise à jour du rôle de l'utilisateur : ", e);
+        }
+    }
+
+    /**
      * Méthode utilitaire privée pour transformer une ligne de la base en objet Utilisateur.
      */
     private Utilisateur extraireUtilisateurDeResultSet(ResultSet rs) throws SQLException {

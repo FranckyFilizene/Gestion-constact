@@ -4,138 +4,132 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<VBox spacing="20.0" styleClass="contacts-page" stylesheets="@../css/contacts.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.contact.controller.ContactListController">
+<VBox spacing="10.0"
+      styleClass="contacts-page"
+      stylesheets="@../css/contacts.css"
+      xmlns="http://javafx.com/javafx/25.0.4"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.contact.controller.ContactListController">
 
    <padding>
-      <Insets bottom="25" left="28" right="28" top="25" />
+      <Insets bottom="12" left="20" right="20" top="12" />
    </padding>
 
    <children>
 
-      <!-- EN-TETE DE LA PAGE -->
-      <HBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="876.0" spacing="15.0" styleClass="page-header">
-
+      <!-- ===== EN-TÊTE DE LA PAGE ===== -->
+      <HBox alignment="CENTER_LEFT" spacing="16.0" styleClass="page-header">
          <children>
-
-            <VBox spacing="6.0">
-
-               <Label styleClass="page-title" text="Gestion des Contacts" />
-
-               <Label styleClass="page-subtitle" text="Consultez, recherchez et gérez l'annuaire territorial de la région." />
-
+            <VBox spacing="4.0">
+               <children>
+                  <Label styleClass="page-title" text="Gestion des Contacts" />
+                  <Label styleClass="page-subtitle" text="Consultez, recherchez et gérez l'annuaire territorial de la région." />
+               </children>
             </VBox>
 
-            <HBox HBox.hgrow="ALWAYS" />
+            <Region HBox.hgrow="ALWAYS" />
 
-                        <!-- BOUTON AJOUTER -->
-            <Button fx:id="btnAjouterContact" mnemonicParsing="false" onAction="#handleAjouter" prefHeight="43.0" styleClass="add-button" text="+  Nouveau contact" />
-
-         </children>
-      </HBox>
-      <Separator prefWidth="200.0" />
-
-
-      <!-- BARRE D'OUTILS -->
-      <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="toolbar">
-
-         <children>
-
-            <!-- COMBOBOX DES FILTRES DE MENUS -->
-            <ComboBox fx:id="cbFiltreMenu" prefHeight="43.0" prefWidth="190.0" promptText="Tous les menus" styleClass="filter-combo" />
-            <ComboBox fx:id="cbFiltreDistrict" layoutX="10.0" layoutY="15.0" prefHeight="43.0" prefWidth="190.0" promptText="Tous les districts" styleClass="filter-combo" />
-
-            <!-- RECHERCHE -->
-            <HBox alignment="CENTER_LEFT" spacing="8.0" styleClass="search-container" HBox.hgrow="ALWAYS">
-
-               <Label styleClass="search-icon" text="⌕" />
-
-               <TextField fx:id="txtRecherche" promptText="Rechercher par nom, fonction, district ou téléphone..." styleClass="search-field" HBox.hgrow="ALWAYS" />
-
-            </HBox>
-
-         </children>
-
-      </HBox>
-
-
-
-      <!-- CARTE DU TABLEAU -->
-      <VBox spacing="0.0" styleClass="table-card" VBox.vgrow="ALWAYS">
-
-         <children>
-
-            <!-- TITRE DU TABLEAU -->
-            <HBox alignment="CENTER_LEFT" prefHeight="21.0" prefWidth="873.0" styleClass="table-card-header">
-
-               <padding>
-                  <Insets bottom="16" left="20" right="20" top="16" />
-               </padding>
-
+            <!-- Boutons d'exportation avec icônes Ikonli -->
+            <HBox spacing="8.0">
                <children>
+                  <Button fx:id="btnExporterExcel" mnemonicParsing="false" onAction="#exporterExcel" styleClass="btn-export-excel" text="Exporter Excel">
+                     <graphic>
+                        <FontIcon iconLiteral="fas-file-excel" iconSize="14" iconColor="white" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnExporterPdf" mnemonicParsing="false" onAction="#exporterPdf" styleClass="btn-export-pdf" text="Exporter PDF">
+                     <graphic>
+                        <FontIcon iconLiteral="fas-file-pdf" iconColor="white" iconSize="14" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnAjouterContact" mnemonicParsing="false" onAction="#ouvrirFenetreNouveauContact" prefHeight="36.0" styleClass="add-button" text="Nouveau contact">
+                     <graphic>
+                        <FontIcon iconLiteral="fas-plus" iconSize="14" iconColor="white" />
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
 
-                  <VBox spacing="4.0">
+      <!-- ===== BARRE D'OUTILS (Filtres élargis + Recherche) ===== -->
+      <HBox alignment="CENTER_LEFT" spacing="8.0" styleClass="toolbar">
+         <padding>
+            <Insets bottom="8" left="12" right="12" top="8" />
+         </padding>
+         <children>
+            <ComboBox fx:id="cbFiltreMenu" prefHeight="34.0" prefWidth="140.0" promptText="Menu" styleClass="filter-combo" />
+            <ComboBox fx:id="cbFiltreFonction" prefHeight="34.0" prefWidth="150.0" promptText="Fonction" styleClass="filter-combo" />
+            <ComboBox fx:id="cbFiltreDistrict" prefHeight="34.0" prefWidth="130.0" promptText="District" styleClass="filter-combo" />
+            <ComboBox fx:id="cbFiltreCommune" disable="true" prefHeight="34.0" prefWidth="140.0" promptText="Commune" styleClass="filter-combo" />
+            <ComboBox fx:id="cbFiltreFokotany" disable="true" prefHeight="34.0" prefWidth="130.0" promptText="Fokotany" styleClass="filter-combo" />
 
-                     <Label styleClass="table-title" text="Répertoire des contacts" />
+            <HBox alignment="CENTER_LEFT" prefHeight="34.0" spacing="8.0" styleClass="search-container" HBox.hgrow="ALWAYS">
+               <children>
+                  <FontIcon iconLiteral="fas-search" iconSize="14" styleClass="search-icon-element" />
+                  <TextField fx:id="txtRecherche" promptText="Rechercher par nom, prénom, email, téléphone..." styleClass="search-field" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+         </children>
+      </HBox>
 
-                     <Label styleClass="table-subtitle" text="Liste des personnes enregistrées dans l'annuaire." />
+      <!-- ===== CARTE DU TABLEAU ===== -->
+      <VBox spacing="0.0" styleClass="table-card" VBox.vgrow="ALWAYS">
+         <children>
 
-                  </VBox>
-
+            <!-- Titre du tableau -->
+            <HBox alignment="CENTER_LEFT" styleClass="table-card-header">
+               <padding>
+                  <Insets bottom="8" left="16" right="16" top="8" />
+               </padding>
+               <children>
+                  <HBox alignment="BASELINE_LEFT" spacing="12.0">
+                     <children>
+                        <Label styleClass="table-title" text="Répertoire des contacts" />
+                        <Label styleClass="table-subtitle" text="Liste des personnes enregistrées dans l'annuaire." />
+                     </children>
+                  </HBox>
                </children>
             </HBox>
 
-
-            <!-- TABLEAU DES CONTACTS -->
             <TableView fx:id="tableViewContacts" styleClass="contacts-table" VBox.vgrow="ALWAYS">
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
 
-               <!-- MESSAGE SI LE TABLEAU EST VIDE -->
                <placeholder>
                   <Label styleClass="table-placeholder" text="Aucun contact disponible." />
                </placeholder>
 
                <columns>
-
-                  <TableColumn fx:id="colNom" prefWidth="180.0" text="NOM COMPLET" />
-
-                  <TableColumn fx:id="colFonction" prefWidth="160.0" text="FONCTION / RÔLE" />
-
-                  <TableColumn fx:id="colDistrict" prefWidth="130.0" text="DISTRICT" />
-
-                  <TableColumn fx:id="colTelephone" prefWidth="120.0" text="TÉLÉPHONE" />
-
-                  <!-- 🚀 AJOUT DE LA COLONNE MOTIF / OBSERVATION -->
-                  <TableColumn fx:id="colObservation" prefWidth="180.0" text="MOTIF / OBSERVATION" />
-
-                  <TableColumn fx:id="colActions" prefWidth="100.0" text="ACTIONS" />
-
+                  <TableColumn fx:id="colCodeDistrict" minWidth="70.0" prefWidth="75.0" text="CODE" styleClass="col-code" />
+                  <TableColumn fx:id="colNom" minWidth="120.0" prefWidth="160.0" text="NOM COMPLET" />
+                  <TableColumn fx:id="colFonction" minWidth="100.0" prefWidth="130.0" text="FONCTION" />
+                  <TableColumn fx:id="colDistrict" minWidth="70.0" prefWidth="90.0" text="DISTRICT" />
+                  <TableColumn fx:id="colCommune" minWidth="80.0" prefWidth="95.0" text="COMMUNE" />
+                  <TableColumn fx:id="colFokotany" minWidth="80.0" prefWidth="95.0" text="FOKOTANY" />
+                  <TableColumn fx:id="colVillage" minWidth="80.0" prefWidth="95.0" text="VILLAGE" />
+                  <TableColumn fx:id="colTelephone" minWidth="110.0" prefWidth="115.0" text="TÉLÉPHONE" styleClass="col-telephone" />
+                  <TableColumn fx:id="colMotif" minWidth="70.0" prefWidth="90.0" text="MOTIF" />
+                  <TableColumn fx:id="colActions" minWidth="90.0" prefWidth="90.0" maxWidth="90.0" text="ACTIONS" styleClass="action-column" />
                </columns>
-
-
-               <columnResizePolicy>
-                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-               </columnResizePolicy>
-
             </TableView>
 
-
-            <!-- PIED DU TABLEAU -->
-            <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="873.0" styleClass="table-footer">
-
+            <!-- Pied du tableau -->
+            <HBox alignment="CENTER_LEFT" styleClass="table-footer">
                <padding>
-                  <Insets bottom="12" left="20" right="20" top="12" />
+                  <Insets bottom="5" left="16" right="16" top="5" />
                </padding>
-
                <children>
-
                   <Label styleClass="footer-label" text="ANNUAIRE ADMINISTRATIF" />
-
                </children>
             </HBox>
 
@@ -143,5 +137,4 @@
       </VBox>
 
    </children>
-
 </VBox>

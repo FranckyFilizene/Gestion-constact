@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<VBox alignment="CENTER"
+      spacing="10"
+      styleClass="about-container"
+      stylesheets="@../css/about.css"
+      xmlns="http://javafx.com/javafx/25.0.4"
+      xmlns:fx="http://javafx.com/fxml/1">
+
+    <padding>
+        <Insets top="12" right="30" bottom="12" left="30"/>
+    </padding>
+
+    <!-- LOGO -->
+    <StackPane styleClass="logo-container">
+        <FontIcon iconLiteral="fas-shield-alt"
+                  iconSize="30"
+                  styleClass="logo-icon"/>
+    </StackPane>
+
+    <!-- IDENTITE -->
+    <VBox alignment="CENTER" spacing="3">
+
+        <Label text="SYSTÈME DE SÉCURITÉ DINA"
+               styleClass="software-title"
+               wrapText="true"/>
+
+        <Label text="SSD"
+               styleClass="software-acronym"/>
+
+        <Label text="Région Atsimo-Andrefana"
+               styleClass="region-label"/>
+
+        <Label text="Centralisation • Sécurité • Organisation"
+               styleClass="software-tagline"/>
+
+    </VBox>
+
+    <Separator styleClass="about-separator"/>
+
+    <!-- PRESENTATION -->
+    <VBox alignment="CENTER"
+          spacing="6"
+          styleClass="presentation-section">
+
+        <Label text="À PROPOS DE L'APPLICATION"
+               styleClass="section-label"/>
+
+        <Label text="Le Système de Sécurité DINA (SSD) est une application destinée à centraliser et organiser les informations relatives aux responsables administratifs, aux structures locales et aux acteurs de la sécurité de la Région Atsimo-Andrefana."
+               styleClass="description-label"
+               wrapText="true"
+               maxWidth="420"/>
+
+        <Label text="Il facilite la recherche des contacts, la consultation des informations et le suivi des effectifs. Il contribue ainsi à une meilleure organisation et à une gestion plus efficace des données."
+               styleClass="description-label"
+               wrapText="true"
+               maxWidth="420"/>
+
+    </VBox>
+
+    <Separator styleClass="about-separator"/>
+
+    <!-- DEVELOPPEUR -->
+    <VBox alignment="CENTER"
+          spacing="5"
+          styleClass="developer-section">
+
+        <Label text="CONCEPTION &amp; DÉVELOPPEMENT"
+               styleClass="section-label"/>
+
+        <Label text="Application conçue et développée par"
+               styleClass="developer-description"/>
+
+        <Label text="RANAIVOMANANA Filizene Francky Michel"
+               styleClass="developer-name"
+               wrapText="true"
+               maxWidth="380"/>
+
+        <Label text="Développeur Full-Stack"
+               styleClass="developer-role"/>
+
+        <!-- SIGNATURE -->
+        <HBox alignment="CENTER"
+              spacing="7"
+              styleClass="brand-container">
+
+            <FontIcon iconLiteral="fas-code"
+                      iconSize="13"
+                      styleClass="brand-icon"/>
+
+            <HBox alignment="CENTER" spacing="2">
+
+                <Label text="Francky"
+                       styleClass="brand-name"/>
+
+                <Label text="RM"
+                       styleClass="brand-rm"/>
+
+            </HBox>
+
+        </HBox>
+
+    </VBox>
+
+    <Separator styleClass="about-separator"/>
+
+    <!-- FOOTER -->
+    <VBox alignment="CENTER" spacing="3">
+
+        <Label text="Version 1.0"
+               styleClass="version-label"/>
+
+        <Label text="© 2026 — Tous droits réservés"
+               styleClass="copyright-label"/>
+
+        <Label text="SSD • Région Atsimo-Andrefana"
+               styleClass="footer-label"/>
+
+    </VBox>
+
+</VBox>

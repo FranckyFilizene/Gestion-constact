@@ -50,7 +50,7 @@ public class RegleEffectifService {
                         admin != null ? admin.getId() : null,
                         ActionJournal.CREATION,
                         "regle_effectif",
-                        0,
+                        0L,
                         "Création règle effectif (Fonction ID: " + regle.getFonctionId() + ", Type: " + regle.getTypeLocalite() + ", Prévu: " + regle.getEffectifPrevu() + ")"
                 );
             }

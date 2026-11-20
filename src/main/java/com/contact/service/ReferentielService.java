@@ -65,7 +65,7 @@ public class ReferentielService {
                         admin != null ? admin.getId() : null,
                         ActionJournal.CREATION,
                         "fonction",
-                        0,
+                        0L,
                         "Création de la fonction : " + fonction.getLibelle()
                 );
             }
@@ -113,7 +113,7 @@ public class ReferentielService {
                         admin != null ? admin.getId() : null,
                         ActionJournal.CREATION,
                         "organisation",
-                        0,
+                        0L,
                         "Création de l'organisation : " + org.getNom()
                 );
             }

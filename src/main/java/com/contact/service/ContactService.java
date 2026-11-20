@@ -49,7 +49,6 @@ public class ContactService {
      * Crée un nouveau contact.
      */
     public boolean creerContact(Contact contact) {
-        // Vérification de la connexion
         if (!Session.getInstance().estConnecte()) {
             throw new ServiceException("Accès refusé : Vous devez être connecté pour ajouter un contact.");
         }
@@ -74,7 +73,7 @@ public class ContactService {
                         utilisateurActif != null ? utilisateurActif.getId() : null,
                         ActionJournal.CREATION,
                         "contact",
-                        0,
+                        contact.getId() != null ? contact.getId() : 0L,
                         "Création du contact : " + contact.getNom() + " " + (contact.getPrenom() != null ? contact.getPrenom() : "")
                 );
             }
@@ -82,6 +81,73 @@ public class ContactService {
             return succes;
         } catch (DaoException e) {
             throw new ServiceException("Erreur technique lors de l'enregistrement du contact : " + e.getMessage(), e);
+        }
+    }
+
+    /**
+     * Met à jour un contact existant.
+     */
+    public boolean modifierContact(Contact contact) {
+        if (!Session.getInstance().estConnecte()) {
+            throw new ServiceException("Accès refusé : Vous devez être connecté pour modifier un contact.");
+        }
+
+        if (contact == null || contact.getId() == null) {
+            throw new ServiceException("Validation échouée : Contact invalide pour la modification.");
+        }
+
+        // Sécurité sur les profils sensibles
+        if (contact.getMotif() != null && !contact.getMotif().trim().isEmpty()) {
+            if (!Session.getInstance().estAdmin()) {
+                throw new ServiceException("Sécurité : Seul un ADMIN peut modifier un profil sensible.");
+            }
+        }
+
+        try {
+            boolean succes = contactDAO.modifier(contact);
+
+            if (succes) {
+                var utilisateurActif = Session.getInstance().getUtilisateurConnecte();
+                journalDAO.enregistrer(
+                        utilisateurActif != null ? utilisateurActif.getId() : null,
+                        ActionJournal.MODIFICATION,
+                        "contact",
+                        contact.getId(),
+                        "Modification du contact ID : " + contact.getId() + " (" + contact.getNom() + ")"
+                );
+            }
+
+            return succes;
+        } catch (DaoException e) {
+            throw new ServiceException("Erreur technique lors de la modification du contact : " + e.getMessage(), e);
+        }
+    }
+
+    /**
+     * Supprime un contact.
+     */
+    public boolean supprimerContact(long id) {
+        if (!Session.getInstance().estConnecte() || !Session.getInstance().estAdmin()) {
+            throw new ServiceException("Accès refusé : Seul un administrateur peut supprimer un contact.");
+        }
+
+        try {
+            boolean succes = contactDAO.supprimer(id);
+
+            if (succes) {
+                var utilisateurActif = Session.getInstance().getUtilisateurConnecte();
+                journalDAO.enregistrer(
+                        utilisateurActif != null ? utilisateurActif.getId() : null,
+                        ActionJournal.SUPPRESSION,
+                        "contact",
+                        id,
+                        "Suppression du contact ID : " + id
+                );
+            }
+
+            return succes;
+        } catch (DaoException e) {
+            throw new ServiceException("Erreur technique lors de la suppression du contact : " + e.getMessage(), e);
         }
     }
 }

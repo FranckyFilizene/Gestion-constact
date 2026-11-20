@@ -50,7 +50,7 @@ public class KmdMembreService {
                         admin != null ? admin.getId() : null,
                         ActionJournal.CREATION,
                         "kmd_membre",
-                        0,
+                        membre.getContactId(),
                         "Enregistrement du membre KMD (Niveau: " + membre.getNiveauKmd() + ", Rôle: " + membre.getRoleKmd() + ")"
                 );
             }

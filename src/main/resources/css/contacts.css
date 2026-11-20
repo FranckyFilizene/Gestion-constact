@@ -1,317 +1,442 @@
+/* ==========================================================
+   contacts.css : Page "Gestion des Contacts"
+   ========================================================== */
 
-/* =========================================
-   PALETTE GENERALE
-========================================= */
-
+/* ---------- Palette ---------- */
 .contacts-page {
-    -fx-background-color: #F3F6FB;
-    -fx-font-family: "System";
+    -c-primary: #1e3a8a;
+    -c-primary-hover: #1d4ed8;
+    -c-primary-soft: #eff4ff;
+    -c-text: #0f172a;
+    -c-muted: #64748b;
+    -c-border: #e2e8f0;
+    -c-surface: #ffffff;
+    -c-bg: #f1f5f9;
+    -c-danger: #dc2626;
+
+    -fx-background-color: -c-bg;
+    -fx-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 13px;
 }
 
-
-/* =========================================
-   EN-TETE
-========================================= */
-
-.page-header {
-    -fx-padding: 0 0 8 0;
-}
-
+/* ---------- En-tête ---------- */
 .page-title {
-    -fx-font-size: 25px;
+    -fx-font-size: 20px;
     -fx-font-weight: bold;
-    -fx-text-fill: #142B49;
+    -fx-text-fill: -c-text;
 }
 
 .page-subtitle {
     -fx-font-size: 13px;
-    -fx-text-fill: #8492A6;
+    -fx-text-fill: -c-muted;
 }
 
-.header-indicator {
-    -fx-background-color: #FFFFFF;
-    -fx-padding: 10 18 10 18;
-    -fx-background-radius: 9;
-    -fx-border-color: #E5EAF1;
-    -fx-border-radius: 9;
-    -fx-border-width: 1;
-}
-
-.indicator-title {
-    -fx-font-size: 10px;
+.add-button {
+    -fx-background-color: -c-primary;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
     -fx-font-weight: bold;
-    -fx-text-fill: #8492A6;
+    -fx-background-radius: 8;
+    -fx-padding: 0 20 0 20;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(30, 58, 138, 0.30), 8, 0, 0, 2);
 }
 
-.indicator-value {
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #1E5DA8;
+.add-button:hover {
+    -fx-background-color: -c-primary-hover;
 }
 
+.add-button:pressed {
+    -fx-background-color: #1e40af;
+    -fx-effect: none;
+}
 
-/* =========================================
-   BARRE D'OUTILS
-========================================= */
-
+/* ---------- Barre d'outils ---------- */
 .toolbar {
-    -fx-padding: 5 0 5 0;
+    -fx-background-color: -c-surface;
+    -fx-background-radius: 10;
+    -fx-border-color: -c-border;
+    -fx-border-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(15, 23, 42, 0.05), 6, 0, 0, 1);
 }
 
+.filter-combo {
+    -fx-background-color: -c-surface;
+    -fx-border-color: -c-border;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+}
+
+.filter-combo:hover {
+    -fx-border-color: #94a3b8;
+}
+
+.filter-combo:focused {
+    -fx-border-color: -c-primary;
+    -fx-background-insets: 0;
+}
+
+.filter-combo .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.filter-combo .arrow {
+    -fx-background-color: -c-muted;
+}
+
+.filter-combo .list-cell {
+    -fx-text-fill: -c-text;
+    -fx-padding: 8 12 8 12;
+}
+
+.filter-combo .list-view .list-cell:hover,
+.filter-combo .list-view .list-cell:filled:selected {
+    -fx-background-color: -c-primary-soft;
+    -fx-text-fill: -c-primary;
+}
+
+/* Recherche */
 .search-container {
-    -fx-background-color: #FFFFFF;
-    -fx-background-radius: 9;
-    -fx-border-color: #E1E7EF;
-    -fx-border-radius: 9;
-    -fx-border-width: 1;
+    -fx-background-color: #f8fafc;
+    -fx-border-color: -c-border;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
     -fx-padding: 0 12 0 12;
-    -fx-min-height: 43;
-    -fx-pref-height: 43;
 }
 
-.search-container:focused {
-    -fx-border-color: #1E5DA8;
+.search-container:focused-within {
+    -fx-border-color: -c-primary;
+    -fx-background-color: white;
 }
 
 .search-icon {
-    -fx-font-size: 25px;
-    -fx-text-fill: #8492A6;
+    -fx-font-size: 18px;
+    -fx-text-fill: -c-muted;
 }
 
 .search-field {
     -fx-background-color: transparent;
-    -fx-border-color: transparent;
     -fx-background-insets: 0;
-    -fx-padding: 8 4 8 4;
+    -fx-padding: 0;
     -fx-font-size: 13px;
-    -fx-text-fill: #173658;
-    -fx-prompt-text-fill: #A0AABB;
+    -fx-text-fill: -c-text;
+    -fx-prompt-text-fill: #94a3b8;
 }
 
 .search-field:focused {
     -fx-background-color: transparent;
-    -fx-border-color: transparent;
     -fx-background-insets: 0;
-    -fx-effect: none;
+    -fx-effect: null;
 }
 
-
-/* =========================================
-   BOUTON NOUVEAU CONTACT
-========================================= */
-
-.add-button {
-    -fx-background-color: #1E5DA8;
-    -fx-text-fill: #FFFFFF;
-    -fx-font-size: 13px;
-    -fx-font-weight: bold;
-    -fx-padding: 0 20 0 20;
-    -fx-background-radius: 8;
-    -fx-cursor: hand;
-    -fx-border-color: transparent;
-}
-
-.add-button:hover {
-    -fx-background-color: #174B8A;
-}
-
-.add-button:pressed {
-    -fx-background-color: #103B70;
-}
-
-
-/* =========================================
-   CARTE DU TABLEAU
-========================================= */
-
+/* ---------- Carte du tableau ---------- */
 .table-card {
-    -fx-background-color: #FFFFFF;
+    -fx-background-color: -c-surface;
     -fx-background-radius: 12;
-    -fx-border-color: #E5EAF1;
+    -fx-border-color: -c-border;
     -fx-border-radius: 12;
-    -fx-border-width: 1;
-    -fx-effect: dropshadow(
-            gaussian,
-            rgba(20, 43, 73, 0.05),
-            12,
-            0,
-            0,
-            3
-    );
+    -fx-effect: dropshadow(gaussian, rgba(15, 23, 42, 0.06), 10, 0, 0, 2);
 }
-
-
-/* =========================================
-   EN-TETE DU TABLEAU
-========================================= */
 
 .table-card-header {
-    -fx-background-color: #FFFFFF;
-    -fx-background-radius: 12 12 0 0;
-    -fx-border-color: transparent transparent #E9EDF3 transparent;
+    -fx-border-color: transparent transparent -c-border transparent;
     -fx-border-width: 0 0 1 0;
 }
 
 .table-title {
-    -fx-font-size: 16px;
+    -fx-font-size: 14px;
     -fx-font-weight: bold;
-    -fx-text-fill: #173658;
+    -fx-text-fill: -c-text;
 }
 
 .table-subtitle {
     -fx-font-size: 12px;
-    -fx-text-fill: #8492A6;
+    -fx-text-fill: -c-muted;
 }
 
-
-/* =========================================
-   TABLEVIEW
-========================================= */
-
+/* ---------- TableView ---------- */
 .contacts-table {
-    -fx-background-color: #FFFFFF;
-    -fx-border-color: transparent;
-    -fx-table-cell-border-color: #EDF0F5;
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-fixed-cell-size: 48;
+    -fx-table-cell-border-color: transparent;
 }
 
 .contacts-table .column-header-background {
-    -fx-background-color: #F5F7FA;
-}
-
-.contacts-table .column-header {
-    -fx-background-color: #F5F7FA;
-    -fx-border-color: transparent transparent #E5EAF1 transparent;
+    -fx-background-color: #f8fafc;
+    -fx-border-color: transparent transparent -c-border transparent;
     -fx-border-width: 0 0 1 0;
-    -fx-size: 45px;
 }
 
-.contacts-table .column-header .label {
-    -fx-text-fill: #64748B;
-    -fx-font-size: 11px;
-    -fx-font-weight: bold;
-    -fx-alignment: CENTER_LEFT;
-    -fx-padding: 0 10 0 10;
-}
-
+.contacts-table .column-header,
 .contacts-table .filler {
-    -fx-background-color: #F5F7FA;
-    -fx-border-color: transparent transparent #E5EAF1 transparent;
-}
-
-.contacts-table .table-row-cell {
-    -fx-background-color: #FFFFFF;
-    -fx-border-color: transparent transparent #F0F2F6 transparent;
-    -fx-border-width: 0 0 1 0;
-    -fx-padding: 0 8 0 8;
-}
-
-.contacts-table .table-row-cell:odd {
-    -fx-background-color: #FAFBFD;
-}
-
-.contacts-table .table-row-cell:hover {
-    -fx-background-color: #F0F5FC;
-}
-
-.contacts-table .table-row-cell:selected {
-    -fx-background-color: #E5EFFB;
-}
-
-.contacts-table .table-row-cell:selected .text {
-    -fx-fill: #173658;
-}
-
-.contacts-table .table-cell {
-    -fx-text-fill: #334155;
-    -fx-font-size: 12px;
-    -fx-alignment: CENTER_LEFT;
-    -fx-padding: 0 10 0 10;
+    -fx-background-color: transparent;
+    -fx-size: 34;
     -fx-border-color: transparent;
 }
 
+.contacts-table .column-header .label {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -c-muted;
+    -fx-alignment: CENTER-LEFT;
+    -fx-padding: 0 0 0 6;
+}
 
-/* =========================================
-   PLACEHOLDER TABLEAU VIDE
-========================================= */
+.contacts-table .table-row-cell {
+    -fx-background-color: -c-surface;
+    -fx-cell-size: 38;
+    -fx-border-color: transparent transparent #f1f5f9 transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.contacts-table .table-row-cell:odd {
+    -fx-background-color: #fcfdfe;
+}
+
+.contacts-table .table-row-cell:hover {
+    -fx-background-color: -c-primary-soft;
+}
+
+.contacts-table .table-row-cell:selected {
+    -fx-background-color: #dbeafe;
+}
+
+.contacts-table .table-cell {
+    -fx-text-fill: -c-text;
+    -fx-font-size: 13px;
+    -fx-alignment: CENTER-LEFT;
+    -fx-padding: 0 0 0 10;
+}
+
+.contacts-table .table-row-cell:selected .table-cell {
+    -fx-text-fill: -c-primary;
+}
+
+.contacts-table:focused .table-row-cell:selected {
+    -fx-background-color: #dbeafe;
+}
 
 .table-placeholder {
-    -fx-text-fill: #94A3B8;
     -fx-font-size: 14px;
+    -fx-text-fill: #94a3b8;
 }
 
-
-/* =========================================
-   SCROLLBAR DU TABLEAU
-========================================= */
-
-.contacts-table .scroll-bar:vertical {
+/* Barres de défilement discrètes */
+.contacts-table .scroll-bar {
     -fx-background-color: transparent;
-    -fx-pref-width: 9;
-}
-
-.contacts-table .scroll-bar:horizontal {
-    -fx-background-color: transparent;
-    -fx-pref-height: 9;
 }
 
 .contacts-table .scroll-bar .thumb {
-    -fx-background-color: #CBD5E1;
-    -fx-background-radius: 10;
+    -fx-background-color: #cbd5e1;
+    -fx-background-radius: 6;
 }
 
 .contacts-table .scroll-bar .thumb:hover {
-    -fx-background-color: #94A3B8;
+    -fx-background-color: #94a3b8;
 }
 
-.contacts-table .scroll-bar .track {
+.contacts-table .scroll-bar .increment-button,
+.contacts-table .scroll-bar .decrement-button {
+    -fx-padding: 0;
+}
+
+.contacts-table .scroll-bar .increment-arrow,
+.contacts-table .scroll-bar .decrement-arrow {
+    -fx-padding: 0;
+    -fx-shape: "";
+}
+
+/* ---------- Boutons d'actions (colonne ACTIONS) ----------
+   À appliquer dans la cellule : btn.getStyleClass().add("action-button") */
+.action-button {
     -fx-background-color: transparent;
+    -fx-text-fill: -c-muted;
+    -fx-background-radius: 6;
+    -fx-padding: 4 8 4 8;
+    -fx-cursor: hand;
 }
 
+.action-button:hover {
+    -fx-background-color: -c-primary-soft;
+    -fx-text-fill: -c-primary;
+}
 
-/* =========================================
-   PIED DU TABLEAU
-========================================= */
+.action-button.delete-button:hover {
+    -fx-background-color: #fee2e2;
+    -fx-text-fill: -c-danger;
+}
 
+/* ---------- Pied du tableau ---------- */
 .table-footer {
-    -fx-background-color: #FAFBFD;
+    -fx-background-color: #f8fafc;
     -fx-background-radius: 0 0 12 12;
-    -fx-border-color: #E9EDF3 transparent transparent transparent;
+    -fx-border-color: -c-border transparent transparent transparent;
     -fx-border-width: 1 0 0 0;
 }
 
 .footer-label {
-    -fx-font-size: 10px;
+    -fx-font-size: 11px;
     -fx-font-weight: bold;
-    -fx-text-fill: #94A3B8;
+    -fx-text-fill: #94a3b8;
+    -fx-letter-spacing: 1px;
 }
 
-/* =========================================
-   COMBOBOX DES FILTRES DE MENUS
-========================================= */
-
-.filter-combo {
-    -fx-background-color: #FFFFFF;
-    -fx-background-radius: 9;
-    -fx-border-color: #E1E7EF;
-    -fx-border-radius: 9;
-    -fx-border-width: 1;
-    -fx-padding: 0 4 0 4;
-    -fx-font-size: 13px;
-    -fx-text-fill: #173658;
+/* Bouton Export Excel */
+.btn-export-excel {
+    -fx-background-color: #27ae60;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+    -fx-padding: 7px 14px;
+    -fx-cursor: hand;
+}
+.btn-export-excel:hover {
+    -fx-background-color: #219653;
 }
 
-.filter-combo:hover {
-    -fx-border-color: #CBD5E1;
+/* Bouton Export PDF */
+.btn-export-pdf {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+    -fx-padding: 7px 14px;
+    -fx-cursor: hand;
+}
+.btn-export-pdf:hover {
+    -fx-background-color: #c0392b;
 }
 
-.filter-combo:focused {
-    -fx-border-color: #1E5DA8;
+/* Style global des cellules du tableau pour éviter la troncature des textes */
+.contacts-table .table-cell {
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 0 8px;
+    -fx-text-overrun: CLIP; /* Empêche les vilains points de suspension si un texte est un tout petit peu long */
 }
 
-.filter-combo .list-cell {
-    -fx-text-fill: #334155;
-    -fx-font-size: 13px;
-    -fx-padding: 8 12 8 12;
+/* Centrer la colonne des actions (boutons modifier/supprimer) */
+.contacts-table .table-column.action-column {
+    -fx-alignment: CENTER;
+}
+
+/* Fixer un espacement propre pour les boutons d'action dans la cellule */
+.action-cell {
+    -fx-alignment: CENTER;
+    -fx-spacing: 6px;
+}
+
+/* ---------- Colonne N° (vert) ---------- */
+.contacts-table .table-cell.col-numero {
+    -fx-background-color: #16a34a;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER;
+    -fx-padding: 0;
+    -fx-border-color: transparent #15803d transparent transparent;
+    -fx-border-width: 0 1 0 0;
+}
+
+/* ---------- Colonne CODE DIST. (bleu) ---------- */
+.contacts-table .table-cell.col-code {
+    -fx-background-color: #dbeafe;
+    -fx-text-fill: #1e3a8a;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER;
+    -fx-padding: 0;
+    -fx-border-color: transparent #bfdbfe transparent transparent;
+    -fx-border-width: 0 1 0 0;
+}
+
+/* Garder les couleurs même quand la ligne est survolée ou sélectionnée */
+.contacts-table .table-row-cell:hover .table-cell.col-numero,
+.contacts-table .table-row-cell:selected .table-cell.col-numero {
+    -fx-background-color: #15803d;
+    -fx-text-fill: white;
+}
+.contacts-table .table-row-cell:hover .table-cell.col-code,
+.contacts-table .table-row-cell:selected .table-cell.col-code {
+    -fx-background-color: #bfdbfe;
+    -fx-text-fill: #1e3a8a;
+}
+
+/* ---------- En-têtes colorés ---------- */
+.contacts-table .column-header.col-numero {
+    -fx-background-color: #16a34a;
+}
+.contacts-table .column-header.col-numero .label {
+    -fx-text-fill: white;
+    -fx-alignment: CENTER;
+}
+.contacts-table .column-header.col-code {
+    -fx-background-color: #1e3a8a;
+}
+.contacts-table .column-header.col-code .label {
+    -fx-text-fill: white;
+    -fx-alignment: CENTER;
+}
+
+/* ---------- Colonne ACTIONS ---------- */
+.contacts-table .table-cell.action-column {
+    -fx-alignment: CENTER;
+    -fx-padding: 0;
+}
+.contacts-table .column-header.action-column .label {
+    -fx-alignment: CENTER;
+}
+
+/* Boutons d'action plus lisibles */
+.action-button {
+    -fx-background-color: #f1f5f9;
+    -fx-background-radius: 6;
+    -fx-padding: 5 8 5 8;
+    -fx-cursor: hand;
+}
+.action-button.edit-button   { -fx-text-fill: #1d4ed8; }
+.action-button.edit-button:hover   { -fx-background-color: #dbeafe; }
+.action-button.delete-button { -fx-text-fill: #dc2626; }
+.action-button.delete-button:hover { -fx-background-color: #fee2e2; }
+
+/* ---------- Finition générale ---------- */
+.contacts-table .column-header .label {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+.contacts-table .table-row-cell:odd .table-cell { -fx-background-color: transparent; }
+
+/* ---------- Colonne TÉLÉPHONE (vert) : uniquement sur les lignes remplies ---------- */
+.contacts-table .table-cell.col-telephone:filled {
+    -fx-background-color: #dcfce7;
+    -fx-text-fill: #166534;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER;
+    -fx-border-color: transparent #bbf7d0 transparent transparent;
+    -fx-border-width: 0 1 0 0;
+}
+.contacts-table .table-row-cell:hover .table-cell.col-telephone:filled,
+.contacts-table .table-row-cell:selected .table-cell.col-telephone:filled {
+    -fx-background-color: #bbf7d0;
+    -fx-text-fill: #166534;
+}
+.contacts-table .column-header.col-telephone {
+    -fx-background-color: #16a34a;
+}
+.contacts-table .column-header.col-telephone .label {
+    -fx-text-fill: white;
+    -fx-alignment: CENTER;
+}
+
+/* ---------- Colonne CODE (bleu) : uniquement sur les lignes remplies ---------- */
+.contacts-table .table-cell.col-code:filled {
+    -fx-background-color: #dbeafe;
+    -fx-text-fill: #1e3a8a;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER;
+    -fx-padding: 0;
+}
+.contacts-table .table-row-cell:hover .table-cell.col-code:filled,
+.contacts-table .table-row-cell:selected .table-cell.col-code:filled {
+    -fx-background-color: #bfdbfe;
 }

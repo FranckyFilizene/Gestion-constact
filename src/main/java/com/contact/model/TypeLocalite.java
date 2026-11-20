@@ -5,5 +5,6 @@ public enum TypeLocalite {
     DISTRICT,
     COMMUNE,
     FOKOTANY,
+    VILLAGE,
     LIMITROPHE
 }

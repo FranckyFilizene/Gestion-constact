@@ -87,13 +87,14 @@ public class LocaliteService {
             boolean succes = localiteDAO.insertLocalite(localite);
 
             // Journalisation en cas de succès
+            // Journalisation en cas de succès
             if (succes) {
                 var adminActif = Session.getInstance().getUtilisateurConnecte();
                 journalDAO.enregistrer(
                         adminActif != null ? adminActif.getId() : null,
                         ActionJournal.CREATION,
                         "localite",
-                        0,
+                        localite.getId() != null ? localite.getId() : 0L,
                         "Création de la localité : " + localite.getNom() + " [Type: " + localite.getTypeLocalite() + "]"
                 );
             }

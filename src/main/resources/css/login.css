@@ -1,25 +1,39 @@
 
 /* =========================================
-   GESTION DES CONTACTS - ATSIMO ANDREFANA
-   THEME : NAVY BLUE / WHITE
+   LOGIN SSD - THEME PROFESSIONNEL
+   FRANCKYRM
 ========================================= */
 
-/* FOND PRINCIPAL */
+
+/* =========================================
+   FOND GENERAL
+========================================= */
+
 .root-pane {
-    -fx-background-color: #eef2f7;
-    -fx-font-family: "Segoe UI";
+    -fx-background-color: transparent;
+    -fx-font-family: "System";
 }
 
-/* CONTENEUR PRINCIPAL */
+
+/* =========================================
+   CONTENEUR PRINCIPAL
+========================================= */
+
 .main-container {
-    -fx-background-color: white;
+    -fx-background-color: transparent;;
     -fx-background-radius: 18px;
+    -fx-border-radius: 18px;
+
     -fx-effect: dropshadow(
             gaussian,
-            rgba(15, 23, 42, 0.16),
-            28, 0.15, 0, 8
+            rgba(15, 35, 65, 0.13),
+            28,
+            0.12,
+            0,
+            8
     );
 }
+
 
 /* =========================================
    PANNEAU GAUCHE
@@ -28,179 +42,342 @@
 .brand-panel {
     -fx-background-color: linear-gradient(
             to bottom right,
-            #102c50,
-            #174b83
+            #173B67,
+            #102B4D,
+            #0D203A
     );
+
     -fx-background-radius: 18px 0 0 18px;
 }
 
-.brand-logo {
-    -fx-background-color: rgba(255,255,255,0.13);
-    -fx-background-radius: 14px;
-    -fx-padding: 15px 22px;
-    -fx-text-fill: white;
-    -fx-font-size: 27px;
+
+/* =========================================
+   LOGO / BOUCLIER
+========================================= */
+
+.brand-icon-container {
+    -fx-background-color: rgba(255, 255, 255, 0.10);
+
+    -fx-background-radius: 22px;
+
+    -fx-min-width: 88px;
+    -fx-min-height: 88px;
+    -fx-max-width: 88px;
+    -fx-max-height: 88px;
+
+    -fx-border-color: rgba(255, 255, 255, 0.22);
+    -fx-border-radius: 22px;
+    -fx-border-width: 1.5px;
+
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(0, 0, 0, 0.15),
+            12,
+            0.1,
+            0,
+            4
+    );
+}
+
+.brand-shield-icon {
+    -fx-icon-color: #FFFFFF;
+}
+
+
+/* =========================================
+   TITRES DU PANNEAU GAUCHE
+========================================= */
+
+.brand-title-small {
+    -fx-font-size: 14px;
     -fx-font-weight: bold;
+    -fx-text-fill: #AFC9E8;
 }
 
 .brand-title {
-    -fx-text-fill: white;
-    -fx-font-size: 24px;
+    -fx-font-size: 25px;
     -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
 }
 
 .brand-subtitle {
-    -fx-text-fill: #93c5fd;
-    -fx-font-size: 11px;
+    -fx-font-size: 10px;
     -fx-font-weight: bold;
-    -fx-letter-spacing: 1.5px;
+    -fx-text-fill: #8EB8E8;
 }
 
 .brand-description {
-    -fx-text-fill: #dbeafe;
     -fx-font-size: 13px;
-    -fx-line-spacing: 6px;
+    -fx-text-fill: #D1DDED;
+    -fx-line-spacing: 5px;
+    -fx-wrap-text: true;
 }
 
+
+/* =========================================
+   LISTE DES FONCTIONNALITES
+========================================= */
+
 .feature-list {
-    -fx-padding: 15px 0 0 0;
+    -fx-padding: 12px 0 0 0;
+}
+
+.feature-icon {
+    -fx-icon-color: #65C7AE;
 }
 
 .feature-label {
-    -fx-text-fill: #e0ecff;
-    -fx-font-size: 13px;
+    -fx-font-size: 12px;
+    -fx-text-fill: #E7EFF9;
+}
+
+
+/* =========================================
+   PIED DU PANNEAU GAUCHE
+========================================= */
+
+.brand-footer {
+    -fx-border-color: rgba(255, 255, 255, 0.18) transparent transparent transparent;
+    -fx-border-width: 1px 0 0 0;
+    -fx-padding: 16px 0 0 0;
+}
+
+.footer-caption {
+    -fx-font-size: 9px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #8EB8E8;
 }
 
 .copyright-label {
-    -fx-text-fill: #9db8d8;
     -fx-font-size: 10px;
-    -fx-padding: 25px 0 0 0;
+    -fx-text-fill: #B6C7DC;
 }
+
 
 /* =========================================
    PANNEAU DROIT
 ========================================= */
 
 .form-panel {
-    -fx-background-color: #ffffff;
+    -fx-background-color: #FFFFFF;
     -fx-background-radius: 0 18px 18px 0;
 }
 
-/* TITRES */
+
+/* =========================================
+   TITRE FORMULAIRE
+========================================= */
+
+.form-heading {
+    -fx-padding: 0 0 10px 0;
+}
+
 .title-label {
-    -fx-text-fill: #142d4e;
     -fx-font-size: 27px;
     -fx-font-weight: bold;
+    -fx-text-fill: #142B49;
 }
 
 .subtitle-label {
-    -fx-text-fill: #8492a6;
-    -fx-font-size: 12px;
+    -fx-font-size: 13px;
+    -fx-text-fill: #8492A6;
 }
 
-/* LABELS */
+
+/* =========================================
+   CHAMPS DU FORMULAIRE
+========================================= */
+
+.form-field {
+    -fx-spacing: 8px;
+}
+
 .field-label {
-    -fx-text-fill: #34445c;
     -fx-font-size: 12px;
     -fx-font-weight: bold;
+    -fx-text-fill: #334155;
 }
 
-/* CHAMPS DE SAISIE */
+
+/* =========================================
+   INPUTS
+========================================= */
+
 .input-field {
-    -fx-background-color: #f7f9fc;
-    -fx-border-color: #dce4ee;
-    -fx-border-width: 1px;
-    -fx-border-radius: 8px;
+    -fx-background-color: #F8FAFC;
     -fx-background-radius: 8px;
+
+    -fx-border-color: #DCE4EE;
+    -fx-border-radius: 8px;
+    -fx-border-width: 1px;
+
     -fx-padding: 0 14px;
+
     -fx-font-size: 12px;
-    -fx-text-fill: #263b55;
-    -fx-prompt-text-fill: #a5b0bf;
+    -fx-text-fill: #173658;
+    -fx-prompt-text-fill: #A0AABB;
+}
+
+.input-field:hover {
+    -fx-border-color: #B8C9DE;
 }
 
 .input-field:focused {
-    -fx-background-color: white;
-    -fx-border-color: #2874c7;
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #1E5DA8;
     -fx-border-width: 1.5px;
+
     -fx-effect: dropshadow(
             gaussian,
-            rgba(40, 116, 199, 0.12),
-            8, 0, 0, 2
+            rgba(30, 93, 168, 0.10),
+            7,
+            0,
+            0,
+            1
     );
 }
 
-/* BOUTON PRINCIPAL */
-.primary-button {
-    -fx-background-color: #1e5da8;
-    -fx-background-radius: 8px;
-    -fx-text-fill: white;
-    -fx-font-size: 13px;
-    -fx-font-weight: bold;
-    -fx-cursor: hand;
+
+/* =========================================
+   AFFICHAGE MOT DE PASSE
+========================================= */
+
+.password-container {
+    -fx-background-color: transparent;
 }
 
-.primary-button:hover {
-    -fx-background-color: #174b89;
-    -fx-effect: dropshadow(
-            gaussian,
-            rgba(30, 93, 168, 0.25),
-            10, 0, 0, 3
-    );
-}
-
-.primary-button:pressed {
-    -fx-background-color: #103d72;
-}
-
-/* LIEN INSCRIPTION */
-.switch-label {
-    -fx-text-fill: #7b8798;
-    -fx-font-size: 11px;
-}
-
-.switch-link {
-    -fx-text-fill: #1e63ad;
-    -fx-font-size: 11px;
-    -fx-font-weight: bold;
-    -fx-border-color: transparent;
-    -fx-underline: false;
-}
-
-.switch-link:hover {
-    -fx-text-fill: #103d72;
-    -fx-underline: true;
-}
-
-/* CHECKBOX AFFICHER MOT DE PASSE */
 .password-checkbox {
-    -fx-text-fill: #8492a6;
     -fx-font-size: 11px;
+    -fx-text-fill: #64748B;
     -fx-cursor: hand;
 }
 
 .password-checkbox .box {
-    -fx-background-color: #f7f9fc;
-    -fx-border-color: #cbd5e1;
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #CBD5E1;
     -fx-border-radius: 4px;
     -fx-background-radius: 4px;
 }
 
 .password-checkbox:selected .box {
-    -fx-background-color: #1e5da8;
-    -fx-border-color: #1e5da8;
+    -fx-background-color: #1E5DA8;
+    -fx-border-color: #1E5DA8;
 }
 
 .password-checkbox:selected .mark {
-    -fx-background-color: white;
+    -fx-background-color: #FFFFFF;
 }
 
-.password-checkbox:hover .box {
-    -fx-border-color: #1e5da8;
-}
 
-/* MESSAGE */
+/* =========================================
+   MESSAGE D'ERREUR / INFORMATION
+========================================= */
+
 .error-label {
-    -fx-text-fill: #dc3545;
+    -fx-font-size: 11px;
+    -fx-text-fill: #DC3545;
+}
+
+
+/* =========================================
+   BOUTON PRINCIPAL
+========================================= */
+
+.primary-button {
+    -fx-background-color: linear-gradient(
+            to right,
+            #1E5DA8,
+            #174B8A
+    );
+
+    -fx-background-radius: 8px;
+
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+}
+
+.primary-button:hover {
+    -fx-background-color: #174B8A;
+
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(30, 93, 168, 0.22),
+            10,
+            0,
+            0,
+            3
+    );
+}
+
+.primary-button:pressed {
+    -fx-background-color: #103B70;
+}
+
+
+/* =========================================
+   LIEN INSCRIPTION
+========================================= */
+
+.switch-label {
+    -fx-font-size: 11px;
+    -fx-text-fill: #8492A6;
+}
+
+.switch-link {
     -fx-font-size: 11px;
     -fx-font-weight: bold;
+    -fx-text-fill: #1E5DA8;
+    -fx-border-color: transparent;
+    -fx-underline: false;
+    -fx-padding: 2px;
+}
+
+.switch-link:hover {
+    -fx-text-fill: #D62839;
+    -fx-underline: true;
+}
+
+
+/* =========================================
+   SIGNATURE FRANCKYRM
+========================================= */
+
+.developer-brand {
+    -fx-padding: 8px 0 0 0;
+}
+
+.main-container {
+    -fx-background-color: transparent;
+    -fx-background-radius: 12px;
+}
+
+.brand-panel {
+    -fx-background-color: #172554; /* Ton bleu foncé */
+    -fx-background-radius: 12px 0px 0px 12px; /* Arrondit uniquement les coins gauches */
+}
+
+.form-panel-container {
+    -fx-background-color: #ffffff; /* Le fond blanc du formulaire */
+    -fx-background-radius: 0px 12px 12px 0px; /* Arrondit uniquement les coins droits */
+}
+
+.powered-label {
+    -fx-font-size: 10px;
+    -fx-text-fill: #A0AABB;
+}
+
+.brand-francky {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #173B67;
+}
+
+.brand-rm {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #D62839;
 }

@@ -1,0 +1,332 @@
+
+/* =========================================
+   PAGE UTILISATEURS
+========================================= */
+
+.users-page {
+    -fx-background-color: #F3F6FB;
+}
+
+/* =========================================
+   EN-TÊTE
+========================================= */
+
+.page-title {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #142B49;
+}
+
+.page-subtitle {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
+    -fx-text-fill: #8492A6;
+}
+
+/* Indicateur administration */
+
+.security-indicator {
+    -fx-background-color: #E8F0FC;
+    -fx-background-radius: 20px;
+    -fx-padding: 9px 15px;
+}
+
+.security-icon {
+    -fx-icon-color: #1E5DA8;
+}
+
+.security-text {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1E5DA8;
+}
+
+/* =========================================
+   CARTE INFORMATIVE
+========================================= */
+
+.users-info-card {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 12px;
+    -fx-border-color: #E5EAF1;
+    -fx-border-radius: 12px;
+    -fx-border-width: 1px;
+    -fx-padding: 17px 20px;
+}
+
+.info-title {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #142B49;
+}
+
+.info-description {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 12px;
+    -fx-text-fill: #8492A6;
+}
+
+.info-icon {
+    -fx-icon-color: #1E5DA8;
+}
+
+/* =========================================
+   CARTE DU TABLEAU
+========================================= */
+
+.users-table-card {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 12px;
+    -fx-border-color: #E5EAF1;
+    -fx-border-radius: 12px;
+    -fx-border-width: 1px;
+}
+
+/* En-tête du tableau */
+
+.table-card-header {
+    -fx-padding: 18px 20px;
+    -fx-border-color: transparent transparent #E5EAF1 transparent;
+    -fx-border-width: 0 0 1px 0;
+}
+
+.table-header-icon {
+    -fx-icon-color: #1E5DA8;
+}
+
+.table-title {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #142B49;
+}
+
+.table-subtitle {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 11px;
+    -fx-text-fill: #8492A6;
+}
+
+.table-counter {
+    -fx-background-color: #EEF3FA;
+    -fx-background-radius: 15px;
+    -fx-padding: 7px 12px;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1E5DA8;
+}
+
+
+/* =========================================
+   TABLEVIEW - DESIGN PROFESSIONNEL
+========================================= */
+
+.users-table {
+    -fx-background-color: #FFFFFF;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-border-color: transparent;
+    -fx-padding: 0 12px 5px 12px;
+    -fx-table-cell-border-color: transparent;
+    -fx-fixed-cell-size: 58px;
+}
+
+/* En-tête du tableau */
+
+.users-table .column-header-background {
+    -fx-background-color: #F1F5FA;
+    -fx-background-radius: 8px 8px 0 0;
+}
+
+.users-table .column-header {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent #E2E8F0 transparent;
+    -fx-border-width: 0 0 1px 0;
+    -fx-size: 52px;
+}
+
+.users-table .column-header .label {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #475569;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 0 12px;
+}
+
+/* Cellules */
+
+.users-table .table-cell {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 12.5px;
+    -fx-text-fill: #334155;
+    -fx-padding: 0 12px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-border-color: transparent;
+}
+
+/* Lignes normales */
+
+.users-table .table-row-cell {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: transparent transparent #EDF1F6 transparent;
+    -fx-border-width: 0 0 1px 0;
+}
+
+/* Alternance légère */
+
+.users-table .table-row-cell:odd {
+    -fx-background-color: #FAFBFD;
+}
+
+/* Survol */
+
+.users-table .table-row-cell:hover {
+    -fx-background-color: #F0F6FF;
+}
+
+/* Ligne sélectionnée */
+
+.users-table .table-row-cell:selected {
+    -fx-background-color: #E7F0FC;
+    -fx-background-insets: 0;
+}
+
+.users-table .table-row-cell:selected .table-cell {
+    -fx-text-fill: #173E70;
+    -fx-font-weight: bold;
+}
+
+/* Supprimer l'effet de focus trop visible */
+
+.users-table:focused .table-row-cell:focused {
+    -fx-background-insets: 0;
+}
+
+/* Placeholder */
+
+.users-table .placeholder {
+    -fx-background-color: #FFFFFF;
+}
+
+/* Scrollbar verticale */
+
+.users-table .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 8px;
+}
+
+.users-table .scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+}
+
+.users-table .scroll-bar:vertical .thumb {
+    -fx-background-color: #CBD5E1;
+    -fx-background-radius: 10px;
+}
+
+.users-table .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #94A3B8;
+}
+
+/* Scrollbar horizontale */
+
+.users-table .scroll-bar:horizontal {
+    -fx-background-color: transparent;
+    -fx-pref-height: 8px;
+}
+
+.users-table .scroll-bar:horizontal .thumb {
+    -fx-background-color: #CBD5E1;
+    -fx-background-radius: 10px;
+}
+
+/* Coins et arrière-plan des coins vides */
+
+.users-table .corner {
+    -fx-background-color: #FFFFFF;
+}
+
+/* =========================================
+   BADGES DES RÔLES
+========================================= */
+
+.role-badge {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 10.5px;
+    -fx-font-weight: bold;
+    -fx-padding: 6px 12px;
+    -fx-background-radius: 20px;
+}
+
+.role-admin {
+    -fx-background-color: #E8F0FC;
+    -fx-text-fill: #1E5DA8;
+}
+
+.role-lecteur {
+    -fx-background-color: #F1F5F9;
+    -fx-text-fill: #64748B;
+}
+
+/* =========================================
+   BADGES DES STATUTS
+========================================= */
+
+.status-badge {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 10.5px;
+    -fx-font-weight: bold;
+    -fx-padding: 6px 13px;
+    -fx-background-radius: 20px;
+}
+
+.status-active {
+    -fx-background-color: #DCFCE7;
+    -fx-text-fill: #15803D;
+}
+
+.status-inactive {
+    -fx-background-color: #FEE2E2;
+    -fx-text-fill: #DC2626;
+}
+
+/* =========================================
+   BOUTONS D'ACTION
+========================================= */
+
+.role-action-button {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-padding: 8px 13px;
+    -fx-background-radius: 7px;
+    -fx-cursor: hand;
+    -fx-content-display: LEFT;
+    -fx-graphic-text-gap: 7px;
+    -fx-border-width: 0;
+}
+
+.promote-button {
+    -fx-background-color: #E8F0FC;
+    -fx-text-fill: #1E5DA8;
+}
+
+.promote-button:hover {
+    -fx-background-color: #1E5DA8;
+    -fx-text-fill: #FFFFFF;
+}
+
+.demote-button {
+    -fx-background-color: #FEE2E2;
+    -fx-text-fill: #DC2626;
+}
+
+.demote-button:hover {
+    -fx-background-color: #DC2626;
+    -fx-text-fill: #FFFFFF;
+}

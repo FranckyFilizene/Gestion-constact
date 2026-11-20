@@ -1,0 +1,271 @@
+/* =====================================================================
+   FORMULAIRE « NOUVEAU CONTACT — ANNEXE & LIMITROPHE »
+   Même identité que la page Annexes : bleu + vert pour la validation.
+   ===================================================================== */
+
+/* ---------- 1. Racine & palette ---------- */
+.form-root {
+    -ink:          #16263F;
+    -ink-soft:     #2C4469;
+    -accent:       #2563C9;
+    -accent-hover: #1D4FA8;
+    -accent-press: #173F86;
+    -accent-tint:  #E6EEFA;
+    -green:        #1E8A55;   /* boutons de validation */
+    -green-hover:  #187246;
+    -green-press:  #135C39;
+    -surface:      #FFFFFF;
+    -surface-alt:  #F7F9FB;
+    -line:         #DCE2EA;
+    -line-soft:    #E9EDF2;
+    -text:         #1B2433;
+    -text-muted:   #5E6B7E;
+    -text-faint:   #8B96A6;
+    -danger:       #C0392B;
+    -danger-tint:  #FBE6E4;
+
+    -fx-background-color: -surface;
+    -fx-font-family: "Segoe UI", "Inter", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 13px;
+    -fx-border-color: -ink;
+    -fx-border-width: 4 0 0 0;
+}
+
+.form-root .label {
+    -fx-text-fill: -text;
+}
+
+/* ---------- 2. En-tête ---------- */
+.form-title {
+    -fx-font-size: 19px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -ink;
+}
+
+.form-subtitle {
+    -fx-font-size: 12px;
+    -fx-text-fill: -text-muted;
+}
+
+.btn-close {
+    -fx-background-color: transparent;
+    -fx-background-radius: 8;
+    -fx-text-fill: -text-faint;
+    -fx-font-size: 14px;
+    -fx-padding: 6 10 6 10;
+    -fx-cursor: hand;
+}
+.btn-close:hover   { -fx-background-color: -danger-tint; -fx-text-fill: -danger; }
+.btn-close:pressed { -fx-background-color: #F6D3CF; }
+.btn-close:focused { -fx-background-insets: 0; -fx-faint-focus-color: transparent; -fx-focus-color: transparent; }
+
+/* ---------- 3. Titres de section ---------- */
+.form-section-title {
+    -fx-font-size: 11.5px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -ink-soft;
+    -fx-padding: 8 0 6 0;
+    -fx-border-color: transparent transparent -line transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+/* ---------- 4. Libellés de champs ---------- */
+.field-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -text-muted;
+}
+
+/* ---------- 5. Champs texte ---------- */
+.form-root .text-field,
+.form-root .text-area {
+    -fx-background-color: -surface-alt;
+    -fx-background-radius: 8;
+    -fx-border-color: -line;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+    -fx-background-insets: 0;
+    -fx-faint-focus-color: transparent;
+    -fx-focus-color: transparent;
+    -fx-text-fill: -text;
+    -fx-prompt-text-fill: -text-faint;
+    -fx-font-size: 13px;
+}
+
+.form-root .text-field {
+    -fx-padding: 0 12 0 12;
+    -fx-pref-height: 38;
+    -fx-min-height: 38;
+}
+
+.form-root .text-field:hover,
+.form-root .text-area:hover {
+    -fx-border-color: -ink-soft;
+    -fx-background-color: -surface;
+}
+
+.form-root .text-field:focused,
+.form-root .text-area:focused {
+    -fx-background-color: -surface;
+    -fx-border-color: -accent;
+    -fx-border-width: 1.5;
+}
+
+.form-root .text-field:disabled,
+.form-root .text-area:disabled {
+    -fx-opacity: 1;
+    -fx-background-color: #F1F3F6;
+    -fx-text-fill: -text-faint;
+}
+
+/* TextArea : le fond réel est dans .content */
+.form-root .text-area .content {
+    -fx-background-color: transparent;
+    -fx-background-radius: 8;
+    -fx-padding: 6 8 6 8;
+}
+.form-root .text-area .scroll-pane,
+.form-root .text-area .viewport {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+}
+.form-root .text-area .scroll-bar .thumb {
+    -fx-background-color: #C5CDD9;
+    -fx-background-radius: 6;
+    -fx-background-insets: 2;
+}
+.form-root .text-area .scroll-bar .track,
+.form-root .text-area .scroll-bar .increment-button,
+.form-root .text-area .scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+.form-root .text-area .scroll-bar .increment-arrow,
+.form-root .text-area .scroll-bar .decrement-arrow {
+    -fx-padding: 0;
+    -fx-shape: " ";
+}
+
+/* ---------- 6. ComboBox ---------- */
+.form-root .combo-box {
+    -fx-background-color: -surface-alt;
+    -fx-background-radius: 8;
+    -fx-border-color: -line;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+    -fx-pref-height: 38;
+    -fx-min-height: 38;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+}
+.form-root .combo-box:hover {
+    -fx-background-color: -surface;
+    -fx-border-color: -ink-soft;
+}
+.form-root .combo-box:focused {
+    -fx-background-color: -surface;
+    -fx-border-color: -accent;
+    -fx-border-width: 1.5;
+    -fx-background-insets: 0;
+    -fx-faint-focus-color: transparent;
+    -fx-focus-color: transparent;
+}
+.form-root .combo-box:disabled {
+    -fx-opacity: 1;
+    -fx-background-color: #F1F3F6;
+    -fx-border-color: -line-soft;
+}
+.form-root .combo-box:disabled .list-cell,
+.form-root .combo-box:disabled .arrow {
+    -fx-opacity: 0.45;
+}
+.form-root .combo-box .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: -text;
+    -fx-padding: 0 0 0 12;
+}
+.form-root .combo-box .arrow-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0 12 0 6;
+}
+.form-root .combo-box .arrow {
+    -fx-background-color: -text-muted;
+    -fx-padding: 2.5 4 2.5 4;
+}
+
+/* Liste déroulante (fenêtre séparée : couleurs littérales) */
+.combo-box-popup > .list-view {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 8;
+    -fx-border-color: #DCE2EA;
+    -fx-border-radius: 8;
+    -fx-padding: 4;
+    -fx-effect: dropshadow(gaussian, rgba(22, 38, 63, 0.18), 16, 0, 0, 6);
+}
+.combo-box-popup > .list-view .list-cell {
+    -fx-background-radius: 6;
+    -fx-padding: 8 12 8 12;
+    -fx-text-fill: #1B2433;
+    -fx-font-size: 13px;
+}
+.combo-box-popup > .list-view .list-cell:filled:hover {
+    -fx-background-color: #EEF1F5;
+}
+.combo-box-popup > .list-view .list-cell:filled:selected {
+    -fx-background-color: #16263F;
+    -fx-text-fill: white;
+}
+
+/* ---------- 7. Validation (optionnel) ----------
+   Dans le contrôleur : champ.getStyleClass().add("field-error")
+   puis .remove("field-error") une fois corrigé. */
+.form-root .text-field.field-error,
+.form-root .text-area.field-error,
+.form-root .combo-box.field-error {
+    -fx-border-color: -danger;
+    -fx-border-width: 1.5;
+    -fx-background-color: #FFF8F7;
+}
+
+/* ---------- 8. Boutons d'action ---------- */
+.btn-cancel,
+.btn-save {
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-padding: 10 20 10 20;
+    -fx-cursor: hand;
+}
+
+.btn-cancel {
+    -fx-background-color: -surface;
+    -fx-text-fill: -text-muted;
+    -fx-border-color: -line;
+    -fx-border-width: 1.2;
+}
+.btn-cancel:hover   { -fx-background-color: -surface-alt; -fx-border-color: -ink-soft; -fx-text-fill: -ink; }
+.btn-cancel:pressed { -fx-background-color: -line-soft; }
+.btn-cancel:focused { -fx-border-color: -ink-soft; -fx-border-width: 2; -fx-faint-focus-color: transparent; -fx-focus-color: transparent; }
+
+.btn-save {
+    -fx-background-color: -green;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(30, 138, 85, 0.30), 8, 0, 0, 2);
+}
+.btn-save:hover   { -fx-background-color: -green-hover; }
+.btn-save:pressed { -fx-background-color: -green-press; -fx-effect: null; }
+.btn-save:disabled {
+    -fx-opacity: 1;
+    -fx-background-color: #D9DEE6;
+    -fx-text-fill: -text-faint;
+    -fx-effect: null;
+}
+.btn-save:focused {
+    -fx-background-insets: 0;
+    -fx-border-color: rgba(30, 138, 85, 0.45);
+    -fx-border-width: 3;
+    -fx-border-insets: -1;
+    -fx-faint-focus-color: transparent;
+    -fx-focus-color: transparent;
+}

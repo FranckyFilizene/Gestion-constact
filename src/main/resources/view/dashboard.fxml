@@ -6,167 +6,217 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<BorderPane fx:id="rootPane" prefHeight="680.0" prefWidth="1250.0" styleClass="root-pane" stylesheets="@../css/dashboard.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.contact.controller.DashboardController">
+<BorderPane fx:id="rootPane" prefHeight="680.0" prefWidth="1250.0" styleClass="root-pane" stylesheets="@../css/dashboard.css" xmlns="http://javafx.com/javafx/25.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.contact.controller.DashboardController">
 
-   <!-- ===================================
-        SIDEBAR : UNIQUEMENT LES MENUS
-   ==================================== -->
-
+   <!-- ==========================================================
+        BARRE LATÉRALE : NAVIGATION
+        ========================================================== -->
    <left>
-      <VBox minWidth="255.0" prefWidth="255.0" spacing="5.0" styleClass="sidebar">
-
+      <VBox minWidth="250.0" prefWidth="250.0" spacing="8.0" styleClass="sidebar">
          <padding>
-            <Insets bottom="12" left="12" right="12" top="12" />
+            <Insets bottom="12" left="12" right="12" top="14" />
          </padding>
 
          <children>
 
-            <Label styleClass="sidebar-heading" text="NAVIGATION" />
+            <Label styleClass="sidebar-heading" text="NAVIGATION">
+               <VBox.margin>
+                  <Insets left="8" />
+               </VBox.margin>
+            </Label>
 
-            <!-- MENUS DEFILANTS -->
+            <!-- Menus défilants -->
             <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="sidebar-scroll" vbarPolicy="AS_NEEDED" VBox.vgrow="ALWAYS">
-
                <content>
                   <VBox spacing="2.0" styleClass="menu-container">
-
                      <padding>
-                        <Insets bottom="5" top="5" />
+                        <Insets bottom="4" top="4" />
                      </padding>
 
                      <children>
 
-                        <Button maxWidth="Infinity" onAction="#chargerTousContacts" styleClass="menu-button" text="📁  Tous les contacts" />
+                        <!-- ===== Général ===== -->
+                        <Button alignment="CENTER_LEFT" graphicTextGap="10" maxWidth="Infinity" mnemonicParsing="false" onAction="#chargerTousContacts" styleClass="menu-button" text="Tous les contacts">
+                           <graphic>
+                              <FontIcon iconLiteral="fas-address-book" iconColor="blanchedalmond" iconSize="15" />
+                           </graphic>
+                        </Button>
 
+                        <!-- ===== Gestion territoriale ===== -->
                         <Label styleClass="menu-section-title" text="GESTION TERRITORIALE">
                            <VBox.margin>
-                              <Insets bottom="3" left="8" top="10" />
+                              <Insets bottom="3" left="8" top="12" />
                            </VBox.margin>
                         </Label>
 
-                        <Button maxWidth="Infinity" onAction="#chargerAdministration" styleClass="menu-button" text="🏛️  Administration" />
+                        <Button alignment="CENTER_LEFT" graphicTextGap="10" maxWidth="Infinity" mnemonicParsing="false" onAction="#chargerAdministration" styleClass="menu-button" text="Administration">
+                           <graphic>
+                              <FontIcon iconLiteral="fas-building" iconSize="15" iconColor="blanchedalmond" />
+                           </graphic>
+                        </Button>
+                        <Button alignment="CENTER_LEFT" graphicTextGap="10" maxWidth="Infinity" mnemonicParsing="false" onAction="#chargerKMD" styleClass="menu-button" text="KMD (Comité Dina)">
+                           <graphic>
+                              <FontIcon iconLiteral="fas-handshake" iconSize="15" iconColor="blanchedalmond" />
+                           </graphic>
+                        </Button>
+                        <Button alignment="CENTER_LEFT" graphicTextGap="10" maxWidth="Infinity" mnemonicParsing="false" onAction="#chargerMaires" styleClass="menu-button" text="Maires (9 Districts)">
+                           <graphic>
+                              <FontIcon iconLiteral="fas-user-tie" iconSize="15" iconColor="blanchedalmond" />
+                           </graphic>
+                        </Button>
+                        <Button alignment="CENTER_LEFT" graphicTextGap="10" maxWidth="Infinity" mnemonicParsing="false" onAction="#chargerForcesOrdre" styleClass="menu-button" text="Forces de l'ordre">
+                           <graphic>
+                              <FontIcon iconLiteral="fas-shield-alt" iconSize="15" iconColor="blanchedalmond" />
+                           </graphic>
+                        </Button>
+                        <Button alignment="CENTER_LEFT" graphicTextGap="10" maxWidth="Infinity" mnemonicParsing="false" onAction="#chargerAnnexe" styleClass="menu-button" text="Annexe (Limitrophe)">
+                           <graphic>
+                              <FontIcon iconLiteral="fas-map-marker-alt" iconSize="15" iconColor="blanchedalmond" />
+                           </graphic>
+                        </Button>
 
-                        <Button maxWidth="Infinity" onAction="#chargerKMD" styleClass="menu-button" text="⚖️  KMD (Comité Dina)" />
-
-                        <Button maxWidth="Infinity" onAction="#chargerMaires" styleClass="menu-button" text="🏛️  Maires (9 Districts)" />
-
-                        <Button maxWidth="Infinity" onAction="#chargerForcesOrdre" styleClass="menu-button" text="🛡️  Forces de l'ordre" />
-
-                        <Button maxWidth="Infinity" onAction="#chargerAnnexe" styleClass="menu-button" text="📍  Annexe (Limitrophe)" />
-
+                        <!-- ===== Sécurité ===== -->
                         <Label fx:id="lblSectionSecurite" styleClass="menu-section-title" text="SÉCURITÉ &amp; SURVEILLANCE">
                            <VBox.margin>
-                              <Insets bottom="3" left="8" top="10" />
+                              <Insets bottom="3" left="8" top="12" />
                            </VBox.margin>
                         </Label>
 
-                        <Button fx:id="btnPersonnesSuspectes" maxWidth="Infinity" onAction="#chargerPersonnesSuspectes" styleClass="menu-button-alert" text="⚠️  Personnes suspectes" />
+                        <Button fx:id="btnPersonnesSuspectes" alignment="CENTER_LEFT" graphicTextGap="10" maxWidth="Infinity" mnemonicParsing="false" onAction="#chargerPersonnesSuspectes" styleClass="menu-button-alert" text="Personnes suspectes">
+                           <graphic>
+                              <FontIcon iconLiteral="fas-exclamation-triangle" iconSize="15" iconColor="orangered" />
+                           </graphic>
+                        </Button>
 
-                        <Label styleClass="menu-section-title" text="PILOTAGE RÉGIONAL">
+                        <!-- ===== Contrôle ===== -->
+                        <Label styleClass="menu-section-title" text="CONTRÔLE &amp; VÉRIFICATION">
                            <VBox.margin>
-                              <Insets bottom="3" left="8" top="10" />
+                              <Insets bottom="3" left="8" top="12" />
                            </VBox.margin>
                         </Label>
 
-                        <Button maxWidth="Infinity" onAction="#chargerControleEffectifs" styleClass="menu-button" text="📊  Contrôle effectifs" />
+                        <Button alignment="CENTER_LEFT" graphicTextGap="10" maxWidth="Infinity" mnemonicParsing="false" onAction="#chargerControleEffectifs" styleClass="menu-button" text="Contrôle effectifs">
+                           <graphic>
+                              <FontIcon iconLiteral="fas-clipboard-list" iconSize="15" iconColor="blanchedalmond" />
+                           </graphic>
+                        </Button>
 
-                        <Button maxWidth="Infinity" onAction="#chargerArborescence" styleClass="menu-button" text="🌳  Arborescence territoriale" />
-
-                        <Label fx:id="txtAdmin" styleClass="menu-section-title" text="ADMINISTRATION SYSTÈME">
+                        <!-- ===== Administration système ===== -->
+                        <Label fx:id="txtAdmin" styleClass="menu-section-title" text="ADMINISTRATION SYSTÈMES">
                            <VBox.margin>
-                              <Insets bottom="3" left="8" top="10" />
+                              <Insets bottom="3" left="8" top="12" />
                            </VBox.margin>
                         </Label>
 
-                        <Button fx:id="btnAdminUtilisateurs" maxWidth="Infinity" onAction="#chargerUtilisateurs" styleClass="menu-button-admin" text="👥  Gérer les utilisateurs" />
-
-                        <Button fx:id="btnAdminJournal" maxWidth="Infinity" onAction="#chargerJournal" styleClass="menu-button-admin" text="📜  Journal d'audit" />
+                        <Button fx:id="btnAdminUtilisateurs" alignment="CENTER_LEFT" graphicTextGap="10" maxWidth="Infinity" mnemonicParsing="false" onAction="#chargerUtilisateurs" styleClass="menu-button-admin" text="Gérer les utilisateurs">
+                           <graphic>
+                              <FontIcon iconLiteral="fas-users" iconSize="15" iconColor="blanchedalmond" />
+                           </graphic>
+                        </Button>
+                        <Button fx:id="btnAdminJournal" alignment="CENTER_LEFT" graphicTextGap="10" maxWidth="Infinity" mnemonicParsing="false" onAction="#chargerJournal" styleClass="menu-button-admin" text="Journal d'audit">
+                           <graphic>
+                              <FontIcon iconLiteral="fas-history" iconSize="15" iconColor="blanchedalmond"/>
+                           </graphic>
+                        </Button>
 
                      </children>
                   </VBox>
                </content>
             </ScrollPane>
 
-            <!-- SEPARATEUR -->
+            <!-- Bouton À propos -->
+            <Button alignment="CENTER_LEFT" graphicTextGap="10" maxWidth="Infinity" minHeight="36.0" mnemonicParsing="false" onAction="#ouvrirAPropos" prefHeight="36.0" styleClass="menu-button" text="À propos / Créateur">
+               <graphic>
+                  <FontIcon iconLiteral="fas-info-circle" iconSize="15" iconColor="blanchedalmond"/>
+               </graphic>
+            </Button>
+
+            <!-- Séparateur -->
             <VBox maxHeight="1.0" minHeight="1.0" prefHeight="1.0" styleClass="sidebar-separator" />
 
-            <!-- DECONNEXION TOUJOURS VISIBLE -->
-            <Button maxWidth="Infinity" minHeight="42.0" onAction="#deconnecter" prefHeight="42.0" styleClass="logout-button" text="🚪  Déconnexion" />
+            <!-- Déconnexion toujours visible -->
+            <Button alignment="CENTER_LEFT" graphicTextGap="10" maxWidth="Infinity" minHeight="40.0" mnemonicParsing="false" onAction="#deconnecter" prefHeight="40.0" styleClass="logout-button" text="Déconnexion">
+               <graphic>
+                  <FontIcon iconLiteral="fas-sign-out-alt" iconSize="15" iconColor="whitesmoke"/>
+               </graphic>
+            </Button>
 
          </children>
       </VBox>
    </left>
 
 
-   <!-- ===================================
-        HEADER : IDENTITE + PROFIL
-   ==================================== -->
+   <!-- ==========================================================
+        EN-TÊTE : IDENTITÉ + PROFIL + BOUTON FERMETURE (X)
+        ========================================================== -->
    <top>
-      <HBox alignment="CENTER_LEFT" prefHeight="82.0" spacing="20.0" styleClass="header-bar">
-
+      <HBox alignment="CENTER_LEFT" minHeight="64.0" prefHeight="64.0" spacing="20.0" styleClass="header-bar">
          <padding>
-            <Insets bottom="12" left="30" right="30" top="12" />
+            <Insets bottom="8" left="28" right="20" top="8" />
          </padding>
 
          <children>
 
-            <!-- IDENTITE DU LOGICIEL A GAUCHE -->
-            <VBox alignment="CENTER_LEFT" spacing="5.0">
-
-               <Label styleClass="header-title" text="RÉGION ATSIMO-ANDREFANA" />
-
-               <Label styleClass="header-subtitle" text="Annuaire &amp; Gestion des Contacts" />
-
+            <!-- Identité du logiciel -->
+            <VBox alignment="CENTER_LEFT" spacing="2.0">
+               <children>
+                  <Label styleClass="header-title" text="RÉGION ATSIMO-ANDREFANA" />
+                  <Label styleClass="header-subtitle" text="Annuaire &amp; Gestion des Contacts" />
+               </children>
             </VBox>
 
-            <!-- ESPACE FLEXIBLE -->
-            <StackPane HBox.hgrow="ALWAYS" />
+            <Region HBox.hgrow="ALWAYS" />
 
-            <!-- PROFIL UTILISATEUR A DROITE -->
-            <HBox alignment="CENTER" spacing="12.0" styleClass="user-profile">
+            <!-- Profil utilisateur -->
+            <HBox alignment="CENTER" spacing="10.0" styleClass="user-profile">
+               <children>
+                  <StackPane maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" prefHeight="36.0" prefWidth="36.0" styleClass="user-avatar">
+                     <children>
+                        <Label styleClass="avatar-letter" text="U" />
+                     </children>
+                  </StackPane>
 
-               <StackPane prefHeight="42.0" prefWidth="42.0" styleClass="user-avatar">
-
-                  <Label styleClass="avatar-letter" text="U" />
-
-               </StackPane>
-
-               <VBox alignment="CENTER_LEFT" spacing="4.0">
-
-                  <Label fx:id="lblNomUtilisateur" styleClass="user-name-label" text="Nom de l'utilisateur" />
-
-                  <Label fx:id="lblRoleUtilisateur" styleClass="user-role-label" text="ADMINISTRATEUR" />
-
-               </VBox>
-
+                  <VBox alignment="CENTER_LEFT" spacing="2.0">
+                     <children>
+                        <Label fx:id="lblNomUtilisateur" styleClass="user-name-label" text="Nom de l'utilisateur" />
+                        <Label fx:id="lblRoleUtilisateur" styleClass="user-role-label" text="ADMINISTRATEUR" />
+                     </children>
+                  </VBox>
+               </children>
             </HBox>
+
+            <!-- BOUTON DE FERMETURE PERSONNALISÉ (X) -->
+            <Button fx:id="btnCloseWindow"
+                    text="✕"
+                    onAction="#fermerApplication"
+                    style="-fx-background-color: transparent; -fx-text-fill: #64748b; -fx-font-size: 18px; -fx-font-weight: bold; -fx-cursor: hand;" />
 
          </children>
       </HBox>
    </top>
 
-   <!-- ===================================
+
+   <!-- ==========================================================
         CONTENU CENTRAL
-   ==================================== -->
+        ========================================================== -->
    <center>
-      <VBox fx:id="contentArea" alignment="CENTER" spacing="15.0" styleClass="content-area">
-
-         <padding>
-            <Insets bottom="30" left="30" right="30" top="30" />
-         </padding>
-
+      <VBox fx:id="contentArea" alignment="CENTER" styleClass="content-area">
          <children>
 
-            <VBox alignment="CENTER" spacing="14.0" styleClass="welcome-card">
-
-               <Label styleClass="welcome-title" text="Bienvenue dans votre espace de gestion" />
-
-               <Label styleClass="welcome-subtitle" text="Annuaire territorial de la Région Atsimo-Andrefana" />
-
-               <Label styleClass="welcome-description" text="Sélectionnez une catégorie dans le menu latéral pour commencer." wrapText="true" />
-
+            <VBox alignment="CENTER" maxWidth="560.0" spacing="10.0" styleClass="welcome-card">
+               <padding>
+                  <Insets bottom="36" left="40" right="40" top="36" />
+               </padding>
+               <children>
+                  <Label styleClass="welcome-title" text="Bienvenue dans votre espace de gestion" />
+                  <Label styleClass="welcome-subtitle" text="Annuaire territorial de la Région Atsimo-Andrefana" />
+                  <Label styleClass="welcome-description" text="Sélectionnez une catégorie dans le menu latéral pour commencer." wrapText="true" />
+               </children>
             </VBox>
 
          </children>

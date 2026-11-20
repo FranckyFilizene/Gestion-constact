@@ -7,8 +7,8 @@ import com.contact.exception.ServiceException;
 import com.contact.model.ActionJournal;
 import com.contact.model.Role;
 import com.contact.model.Utilisateur;
-import com.contact.utils.Validator;
 import com.contact.security.Session;
+import com.contact.utils.Validator;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.List;
@@ -26,7 +26,6 @@ public class UtilisateurService {
      * Crée un nouvel utilisateur (Réservé à l'ADMIN)
      */
     public boolean creerUtilisateur(String login, String nomComplet, String motDePasseClair, Role role) {
-        // Vérification des droits via la session
         if (!Session.getInstance().estAdmin()) {
             throw new ServiceException("Accès refusé : Seul un ADMIN peut créer un utilisateur.");
         }
@@ -40,12 +39,10 @@ public class UtilisateurService {
         }
 
         try {
-            // Vérification si le login existe déjà
             if (utilisateurDAO.rechercherParLogin(login.trim()) != null) {
                 throw new ServiceException("Erreur : Ce login existe déjà.");
             }
 
-            // Hachage BCrypt du mot de passe dans le SERVICE
             String hash = BCrypt.hashpw(motDePasseClair, BCrypt.gensalt());
 
             Utilisateur nouvelUtilisateur = new Utilisateur();
@@ -63,7 +60,7 @@ public class UtilisateurService {
                         adminActif != null ? adminActif.getId() : null,
                         ActionJournal.CREATION,
                         "utilisateur",
-                        0,
+                        nouvelUtilisateur.getId(),
                         "Création du compte utilisateur : " + login
                 );
             }
@@ -94,9 +91,15 @@ public class UtilisateurService {
             nouvelUtilisateur.setActif(true);
 
             boolean succes = utilisateurDAO.inserer(nouvelUtilisateur);
-//            if (succes) {
-//                journalDAO.enregistrer(null, ActionJournal.CREATION, "utilisateur", 0, "Auto-inscription lecteur : " + login);
-//            }
+            if (succes) {
+                journalDAO.enregistrer(
+                        null,
+                        ActionJournal.CREATION,
+                        "utilisateur",
+                        nouvelUtilisateur.getId(),
+                        "Auto-inscription lecteur : " + login
+                );
+            }
             return succes;
         } catch (DaoException e) {
             throw new ServiceException("Erreur technique lors de l'inscription : " + e.getMessage(), e);

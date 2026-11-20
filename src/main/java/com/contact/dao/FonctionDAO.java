@@ -11,11 +11,15 @@ import java.util.List;
 public class FonctionDAO {
 
     /**
-     * Récupère toutes les fonctions enregistrées, triées par libellé.
+     * Récupère toutes les fonctions enregistrées avec leur code de catégorie associé, triées par libellé.
      */
     public List<Fonction> listerToutes() {
         List<Fonction> fonctions = new ArrayList<>();
-        String sql = "SELECT * FROM fonction ORDER BY libelle ASC";
+        // Modification : Ajout d'une jointure (JOIN) pour récupérer le code de la catégorie (ex: 'SUSP', 'ADMIN')
+        String sql = "SELECT f.id, f.libelle, f.categorie_id, f.niveau_cible, f.actif, c.code AS categorie_code " +
+                "FROM fonction f " +
+                "JOIN categorie c ON f.categorie_id = c.id " +
+                "ORDER BY f.libelle ASC";
 
         try (Connection conn = Database.getConnection();
              Statement stmt = conn.createStatement();
@@ -26,17 +30,20 @@ public class FonctionDAO {
             }
 
         } catch (SQLException e) {
-            throw new DaoException("Erreur lors de la récupération des fonctions : ",e);
+            throw new DaoException("Erreur lors de la récupération des fonctions : ", e);
         }
         return fonctions;
     }
 
     /**
-     * Récupère les fonctions associées à une catégorie spécifique (ex: les fonctions liées aux maires ou aux KMD).
+     * Récupère les fonctions associées à une catégorie spécifique.
      */
     public List<Fonction> listerParCategorie(Long categorieId) {
         List<Fonction> fonctions = new ArrayList<>();
-        String sql = "SELECT * FROM fonction WHERE categorie_id = ? ORDER BY libelle ASC";
+        String sql = "SELECT f.id, f.libelle, f.categorie_id, f.niveau_cible, f.actif, c.code AS categorie_code " +
+                "FROM fonction f " +
+                "JOIN categorie c ON f.categorie_id = c.id " +
+                "WHERE f.categorie_id = ? ORDER BY f.libelle ASC";
 
         try (Connection conn = Database.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -50,7 +57,7 @@ public class FonctionDAO {
             }
 
         } catch (SQLException e) {
-            throw new DaoException("Erreur lors de la récupération des fonctions par catégorie : ",e);
+            throw new DaoException("Erreur lors de la récupération des fonctions par catégorie : ", e);
         }
         return fonctions;
     }
@@ -66,13 +73,13 @@ public class FonctionDAO {
 
             pstmt.setString(1, f.getLibelle());
             pstmt.setLong(2, f.getCategorieId());
-            pstmt.setString(3, f.getNiveauCible()); // Ex: REGION, DISTRICT, COMMUNE, FOKOTANY
+            pstmt.setString(3, f.getNiveauCible());
             pstmt.setBoolean(4, f.isActif());
 
             return pstmt.executeUpdate() > 0;
 
         } catch (SQLException e) {
-            throw new DaoException("Erreur lors de l'insertion de la fonction : ",e);
+            throw new DaoException("Erreur lors de l'insertion de la fonction : ", e);
         }
     }
 
@@ -86,6 +93,15 @@ public class FonctionDAO {
         f.setCategorieId(rs.getLong("categorie_id"));
         f.setNiveauCible(rs.getString("niveau_cible"));
         f.setActif(rs.getBoolean("actif"));
+
+        // Récupération du code de la catégorie grâce à la jointure SQL
+        try {
+            f.setCategorieCode(rs.getString("categorie_code"));
+        } catch (SQLException e) {
+            // Sécurité au cas où la requête ne contient pas la colonne categorie_code
+            f.setCategorieCode(null);
+        }
+
         return f;
     }
 }

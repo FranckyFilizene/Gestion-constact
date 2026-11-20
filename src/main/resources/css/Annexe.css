@@ -1,0 +1,278 @@
+/* ==========================================================
+   Annexe.css - Page Annexes & Regions limitrophes
+   Palette bleue administrative + colonne telephone verte
+   ========================================================== */
+
+.annexes-page {
+    -c-primary: #1e3a8a;
+    -c-primary-hover: #1d4ed8;
+    -c-primary-soft: #eff4ff;
+    -c-text: #0f172a;
+    -c-muted: #64748b;
+    -c-border: #e2e8f0;
+    -c-surface: #ffffff;
+    -c-bg: #f1f5f9;
+    -c-danger: #dc2626;
+    -fx-background-color: -c-bg;
+    -fx-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 13px;
+}
+
+/* En-tete */
+.annexes-header { -fx-padding: 2 0 8 0; }
+
+.header-icon-container {
+    -fx-background-color: #dbeafe;
+    -fx-background-radius: 14;
+    -fx-border-color: #bfdbfe;
+    -fx-border-radius: 14;
+}
+.header-icon { -fx-icon-color: #1e40af; -fx-fill: #1e40af; }
+.header-text { -fx-alignment: CENTER_LEFT; }
+
+.page-title {
+    -fx-font-size: 21px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -c-text;
+}
+.page-subtitle { -fx-font-size: 13px; -fx-text-fill: -c-muted; }
+
+/* Boutons */
+.add-button {
+    -fx-background-color: -c-primary;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-padding: 9 17 9 17;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(30,58,138,0.22), 8, 0, 0, 2);
+}
+.add-button:hover { -fx-background-color: -c-primary-hover; }
+.add-button:pressed { -fx-background-color: #1e40af; -fx-effect: none; }
+
+.btn-export-excel {
+    -fx-background-color: #16834a;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 7;
+    -fx-padding: 9 14 9 14;
+    -fx-cursor: hand;
+}
+.btn-export-excel:hover { -fx-background-color: #116b3c; }
+.btn-export-excel .ikonli-font-icon,
+.add-button .ikonli-font-icon {
+    -fx-icon-color: white;
+    -fx-fill: white;
+}
+
+/* Carte et titre des filtres */
+.filter-card {
+    -fx-background-color: -c-surface;
+    -fx-background-radius: 11;
+    -fx-border-color: -c-border;
+    -fx-border-radius: 11;
+    -fx-padding: 12;
+    -fx-effect: dropshadow(gaussian, rgba(15,23,42,0.045), 7, 0, 0, 1);
+}
+.filter-heading {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #475569;
+    -fx-letter-spacing: 0.8px;
+}
+.filter-heading-icon { -fx-icon-color: #64748b; -fx-fill: #64748b; }
+
+/* ComboBox */
+.filter-combo {
+    -fx-background-color: -c-surface;
+    -fx-border-color: -c-border;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+}
+.filter-combo:hover { -fx-border-color: #94a3b8; }
+.filter-combo:focused { -fx-border-color: -c-primary; -fx-background-insets: 0; }
+.filter-combo .arrow-button { -fx-background-color: transparent; }
+.filter-combo .arrow { -fx-background-color: -c-muted; }
+.filter-combo .list-cell { -fx-text-fill: -c-text; -fx-padding: 8 10 8 10; }
+.filter-combo .list-view .list-cell:hover,
+.filter-combo .list-view .list-cell:filled:selected {
+    -fx-background-color: -c-primary-soft;
+    -fx-text-fill: -c-primary;
+}
+
+/* Recherche */
+.search-container {
+    -fx-background-color: #f8fafc;
+    -fx-border-color: -c-border;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 0 12 0 12;
+}
+.search-container:focused-within {
+    -fx-border-color: -c-primary;
+    -fx-background-color: white;
+}
+.search-icon-element { -fx-icon-color: #94a3b8; -fx-fill: #94a3b8; }
+.search-field {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-font-size: 13px;
+    -fx-text-fill: -c-text;
+    -fx-prompt-text-fill: #94a3b8;
+}
+.search-field:focused { -fx-background-color: transparent; -fx-background-insets: 0; -fx-effect: null; }
+
+/* Carte du tableau */
+.table-card {
+    -fx-background-color: -c-surface;
+    -fx-background-radius: 12;
+    -fx-border-color: -c-border;
+    -fx-border-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(15,23,42,0.06), 10, 0, 0, 2);
+}
+.table-card-header {
+    -fx-border-color: transparent transparent -c-border transparent;
+    -fx-border-width: 0 0 1 0;
+}
+.table-title { -fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: -c-text; }
+.table-subtitle { -fx-font-size: 12px; -fx-text-fill: -c-muted; }
+
+/* Badge de statut */
+.table-status {
+    -fx-background-color: #eff6ff;
+    -fx-background-radius: 20;
+    -fx-border-color: #dbeafe;
+    -fx-border-radius: 20;
+    -fx-padding: 6 11 6 11;
+}
+.status-icon { -fx-icon-color: #2563eb; -fx-fill: #2563eb; }
+.status-text { -fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #1d4ed8; }
+
+/* TableView */
+.contacts-table {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-table-cell-border-color: transparent;
+}
+.contacts-table .column-header-background {
+    -fx-background-color: #f8fafc;
+    -fx-border-color: transparent transparent -c-border transparent;
+    -fx-border-width: 0 0 1 0;
+}
+.contacts-table .column-header,
+.contacts-table .filler {
+    -fx-background-color: transparent;
+    -fx-size: 38;
+    -fx-border-color: transparent;
+}
+.contacts-table .column-header .label {
+    -fx-font-size: 10.5px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #64748b;
+    -fx-alignment: CENTER-LEFT;
+    -fx-padding: 0 0 0 8;
+}
+.contacts-table .table-row-cell {
+    -fx-background-color: -c-surface;
+    -fx-cell-size: 40;
+    -fx-border-color: transparent transparent #f1f5f9 transparent;
+    -fx-border-width: 0 0 1 0;
+}
+.contacts-table .table-row-cell:odd { -fx-background-color: #fcfdfe; }
+.contacts-table .table-row-cell:hover { -fx-background-color: -c-primary-soft; }
+.contacts-table .table-row-cell:selected { -fx-background-color: #dbeafe; }
+.contacts-table .table-cell {
+    -fx-text-fill: -c-text;
+    -fx-font-size: 12.5px;
+    -fx-alignment: CENTER-LEFT;
+    -fx-padding: 0 8 0 10;
+    -fx-text-overrun: CLIP;
+}
+.contacts-table .table-row-cell:selected .table-cell { -fx-text-fill: -c-primary; }
+.contacts-table:focused .table-row-cell:selected { -fx-background-color: #dbeafe; }
+
+/* Colonne TELEPHONE verte */
+.contacts-table .table-cell.col-telephone {
+    -fx-background-color: #dcfce7;
+    -fx-text-fill: #166534;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER;
+    -fx-padding: 0 6 0 6;
+    -fx-border-color: transparent #bbf7d0 transparent transparent;
+    -fx-border-width: 0 1 0 0;
+}
+.contacts-table .table-row-cell:hover .table-cell.col-telephone {
+    -fx-background-color: #bbf7d0;
+    -fx-text-fill: #14532d;
+}
+.contacts-table .table-row-cell:selected .table-cell.col-telephone {
+    -fx-background-color: #a7f3d0;
+    -fx-text-fill: #14532d;
+}
+.contacts-table .column-header.col-telephone { -fx-background-color: #16a34a; }
+.contacts-table .column-header.col-telephone .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER;
+}
+
+/* Colonne Actions */
+.contacts-table .table-cell.action-column { -fx-alignment: CENTER; -fx-padding: 0; }
+.contacts-table .column-header.action-column .label { -fx-alignment: CENTER; }
+.action-button {
+    -fx-background-color: #f1f5f9;
+    -fx-text-fill: #64748b;
+    -fx-background-radius: 6;
+    -fx-padding: 5 8 5 8;
+    -fx-cursor: hand;
+}
+.action-button:hover,
+.action-button.edit-button:hover {
+    -fx-background-color: #dbeafe;
+    -fx-text-fill: #1d4ed8;
+}
+.action-button.delete-button { -fx-text-fill: #dc2626; }
+.action-button.delete-button:hover {
+    -fx-background-color: #fee2e2;
+    -fx-text-fill: #dc2626;
+}
+
+/* Placeholder */
+.empty-icon { -fx-icon-color: #94a3b8; -fx-fill: #94a3b8; }
+.empty-title { -fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #475569; }
+.empty-subtitle { -fx-font-size: 12px; -fx-text-fill: #94a3b8; }
+
+/* Pied du tableau */
+.table-footer {
+    -fx-background-color: #f8fafc;
+    -fx-background-radius: 0 0 12 12;
+    -fx-border-color: -c-border transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+}
+.footer-icon { -fx-icon-color: #94a3b8; -fx-fill: #94a3b8; }
+.footer-label {
+    -fx-font-size: 10.5px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #94a3b8;
+    -fx-letter-spacing: 0.8px;
+}
+
+/* Barres de defilement */
+.contacts-table .scroll-bar { -fx-background-color: transparent; }
+.contacts-table .scroll-bar .thumb {
+    -fx-background-color: #cbd5e1;
+    -fx-background-radius: 6;
+}
+.contacts-table .scroll-bar .thumb:hover { -fx-background-color: #94a3b8; }
+.contacts-table .scroll-bar .increment-button,
+.contacts-table .scroll-bar .decrement-button { -fx-padding: 0; }
+.contacts-table .scroll-bar .increment-arrow,
+.contacts-table .scroll-bar .decrement-arrow {
+    -fx-padding: 0;
+    -fx-shape: "";
+}

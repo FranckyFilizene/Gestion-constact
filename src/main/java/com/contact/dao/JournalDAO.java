@@ -5,7 +5,13 @@ import com.contact.exception.DaoException;
 import com.contact.model.ActionJournal;
 import com.contact.model.JournalEntry;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Timestamp;
+import java.sql.Types;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,9 +19,17 @@ import java.util.List;
 public class JournalDAO {
 
     /**
-     * Enregistre une action dans le journal d'audit.
+     * Enregistre une action sans identifiant cible précis.
      */
-    public void enregistrer(Long utilisateurId, ActionJournal action, String tableCible, long idCible, String details) {
+    public void enregistrer(Long utilisateurId, ActionJournal action, String tableCible, String details) {
+        enregistrer(utilisateurId, action, tableCible, (Long) null, details);
+    }
+
+    /**
+     * Enregistre une action dans le journal d'audit.
+     * Si idCible vaut null ou 0, il est enregistré comme NULL en base (ou 0L si la colonne est NOT NULL).
+     */
+    public void enregistrer(Long utilisateurId, ActionJournal action, String tableCible, Long idCible, String details) {
         String sql = "INSERT INTO journal (utilisateur_id, action, table_cible, id_cible, details, date_action) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = Database.getConnection();
@@ -27,17 +41,23 @@ public class JournalDAO {
                 pstmt.setNull(1, Types.BIGINT);
             }
 
-            // Conversion de l'Enum en String pour PostgreSQL
             pstmt.setString(2, action != null ? action.name() : null);
             pstmt.setString(3, tableCible);
-            pstmt.setLong(4, idCible);
+
+            if (idCible != null && idCible != 0L) {
+                pstmt.setLong(4, idCible);
+            } else {
+                // Si ta colonne id_cible en PostgreSQL est NOT NULL, remplace par : pstmt.setLong(4, 0L);
+                pstmt.setNull(4, Types.BIGINT);
+            }
+
             pstmt.setString(5, details);
             pstmt.setObject(6, LocalDateTime.now());
 
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
-            throw new DaoException("Erreur lors de l'enregistrement dans le journal : " ,e);
+            throw new DaoException("Erreur lors de l'enregistrement dans le journal : " + e.getMessage(), e);
         }
     }
 
@@ -57,13 +77,8 @@ public class JournalDAO {
                 j.setId(rs.getLong("id"));
 
                 long utilId = rs.getLong("utilisateur_id");
-                if (rs.wasNull()) {
-                    j.setUtilisateurId(null);
-                } else {
-                    j.setUtilisateurId(utilId);
-                }
+                j.setUtilisateurId(rs.wasNull() ? null : utilId);
 
-                // Conversion du String de la base en Enum ActionJournal
                 String actionStr = rs.getString("action");
                 if (actionStr != null) {
                     try {
@@ -74,7 +89,10 @@ public class JournalDAO {
                 }
 
                 j.setTableCible(rs.getString("table_cible"));
-                j.setIdCible(rs.getLong("id_cible"));
+
+                long cibleId = rs.getLong("id_cible");
+                j.setIdCible(rs.wasNull() ? null : cibleId);
+
                 j.setDetails(rs.getString("details"));
 
                 Timestamp timestamp = rs.getTimestamp("date_action");
@@ -86,7 +104,7 @@ public class JournalDAO {
             }
 
         } catch (SQLException e) {
-            throw new DaoException("Erreur lors de la récupération du journal : ",e);
+            throw new DaoException("Erreur lors de la récupération du journal : " + e.getMessage(), e);
         }
 
         return liste;

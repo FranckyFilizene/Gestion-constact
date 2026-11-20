@@ -1,0 +1,140 @@
+
+.about-container {
+    -fx-background-color: #F5F7FB;
+    -fx-font-family: "Segoe UI";
+}
+
+/* LOGO */
+.logo-container {
+    -fx-pref-width: 60px;
+    -fx-pref-height: 60px;
+    -fx-min-width: 60px;
+    -fx-min-height: 60px;
+    -fx-max-width: 60px;
+    -fx-max-height: 60px;
+
+    -fx-background-color: linear-gradient(
+            to bottom right, #263F65, #14243B
+    );
+
+    -fx-background-radius: 18px;
+
+    -fx-effect: dropshadow(
+            gaussian, rgba(25,48,78,0.16), 10, 0.1, 0, 3
+    );
+}
+
+.logo-icon {
+    -fx-icon-color: white;
+}
+
+/* IDENTITE */
+.software-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1D2D44;
+    -fx-text-alignment: center;
+}
+
+.software-acronym {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-color: #345B8C;
+    -fx-background-radius: 15px;
+    -fx-padding: 3px 12px;
+}
+
+.region-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #52657D;
+}
+
+.software-tagline {
+    -fx-font-size: 10px;
+    -fx-text-fill: #8793A4;
+}
+
+/* SEPARATEURS */
+.about-separator {
+    -fx-padding: 0;
+}
+
+.about-separator .line {
+    -fx-border-color: #DCE3EC;
+    -fx-border-width: 1px 0 0 0;
+}
+
+/* TITRES DE SECTION */
+.section-label {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #59718F;
+}
+
+/* PRESENTATION */
+.presentation-section {
+    -fx-padding: 0 5px;
+}
+
+.description-label {
+    -fx-font-size: 11px;
+    -fx-text-fill: #58677A;
+    -fx-text-alignment: center;
+    -fx-line-spacing: 2px;
+}
+
+/* DEVELOPPEUR */
+.developer-description {
+    -fx-font-size: 11px;
+    -fx-text-fill: #78869A;
+}
+
+.developer-name {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1D2D44;
+    -fx-text-alignment: center;
+}
+
+.developer-role {
+    -fx-font-size: 11px;
+    -fx-text-fill: #58769D;
+}
+
+/* SIGNATURE */
+.brand-container {
+    -fx-background-color: #E8EEF6;
+    -fx-background-radius: 9px;
+    -fx-padding: 5px 12px;
+}
+
+.brand-icon {
+    -fx-icon-color: #426991;
+}
+
+.brand-name {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #263F65;
+}
+
+.brand-rm {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #8298B3;
+}
+
+/* FOOTER */
+.version-label {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #526A87;
+}
+
+.copyright-label,
+.footer-label {
+    -fx-font-size: 9px;
+    -fx-text-fill: #98A3B1;
+}

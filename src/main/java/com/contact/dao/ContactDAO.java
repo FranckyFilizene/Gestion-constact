@@ -35,8 +35,65 @@ public class ContactDAO {
      * Insère un nouveau contact dans la base de données.
      */
     public boolean inserer(Contact contact) {
-        String sql = "INSERT INTO contact (nom, prenom, fonction_id, organisation_id, localite_id, telephone_1, telephone_2, email, observation, motif, actif) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sqlContact = "INSERT INTO contact (nom, prenom, fonction_id, organisation_id, localite_id, telephone_1, telephone_2, email, observation, motif, actif) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, TRUE)";
+
+        String sqlJournal = "INSERT INTO journal (utilisateur_id, action, tabel_cible, id_cible, details) VALUES (?, 'CREATION', 'contact', ?, ?)";
+
+        try (Connection conn = Database.getConnection()) {
+            conn.setAutoCommit(false);
+
+            long contactId;
+
+            //1.Insertion du contact
+            try(PreparedStatement pstmt = conn.prepareStatement(sqlContact, Statement.RETURN_GENERATED_KEYS)){
+                pstmt.setString(1,contact.getNom().toLowerCase());
+                pstmt.setString(2,contact.getPrenom());
+                pstmt.setLong(3, contact.getFonctionId());
+
+                //Gestion de l'organisation optionnelle (peut etre null)
+                if(contact.getOrganisationId() != null){
+                    pstmt.setLong(4,contact.getOrganisationId());
+                }else{
+                    pstmt.setNull(4, Types.BIGINT);
+                }
+
+                pstmt.setLong(5, contact.getLocaliteId());
+                pstmt.setString(6, contact.getTelephone1());
+                pstmt.setString(7, contact.getTelephone2());
+                pstmt.setString(8, contact.getEmail());
+                pstmt.setString(9, contact.getObservation());
+                pstmt.setString(10, contact.getMotif());
+
+                int affectedRows = pstmt.executeUpdate();
+                if(affectedRows == 0){
+                    throw new SQLException("Échec de la création du contact, aucune ligne insérée.");
+                }
+
+                //Recupration de l'id generer pour le contact
+                try(ResultSet generatedKeys = pstmt.getGeneratedKeys()){
+                    if(generatedKeys.next()){
+                        contactId = generatedKeys.getLong(1);
+                    }else {
+                        throw new SQLException("Échec de la création, aucun ID généré.");
+                    }
+                }
+
+                conn.commit();
+                return true;
+            }
+        } catch (SQLException e) {
+            throw new DaoException("Erreur lors de l'insertion du contact : ",e);
+        }
+    }
+
+    /**
+     * Met à jour un contact existant dans la base de données.
+     */
+    public boolean modifier(Contact contact) {
+        String sql = "UPDATE contact SET nom = ?, prenom = ?, fonction_id = ?, organisation_id = ?, " +
+                "localite_id = ?, telephone_1 = ?, telephone_2 = ?, email = ?, observation = ?, motif = ?, " +
+                "date_modification = CURRENT_TIMESTAMP WHERE id = ?";
 
         try (Connection conn = Database.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -45,10 +102,10 @@ public class ContactDAO {
             pstmt.setString(2, contact.getPrenom());
             pstmt.setLong(3, contact.getFonctionId());
 
-            if (contact.getOrganisationId() == null) {
-                pstmt.setNull(4, Types.BIGINT);
-            } else {
+            if (contact.getOrganisationId() != null) {
                 pstmt.setLong(4, contact.getOrganisationId());
+            } else {
+                pstmt.setNull(4, Types.BIGINT);
             }
 
             pstmt.setLong(5, contact.getLocaliteId());
@@ -56,13 +113,33 @@ public class ContactDAO {
             pstmt.setString(7, contact.getTelephone2());
             pstmt.setString(8, contact.getEmail());
             pstmt.setString(9, contact.getObservation());
-            pstmt.setString(10, contact.getMotif()); // Réservé à l'ADMIN pour les profils sensibles
-            pstmt.setBoolean(11, contact.isActif());
+            pstmt.setString(10, contact.getMotif());
+            pstmt.setLong(11, contact.getId());
 
-            return pstmt.executeUpdate() > 0;
+            int affectedRows = pstmt.executeUpdate();
+            return affectedRows > 0;
 
         } catch (SQLException e) {
-            throw new DaoException("Erreur lors de l'insertion du contact : ",e);
+            throw new DaoException("Erreur lors de la modification du contact : ", e);
+        }
+    }
+
+    /**
+     * Supprime (ou désactive logiquement) un contact par son ID.
+     */
+    public boolean supprimer(long id) {
+        String sql = "UPDATE contact SET actif = FALSE WHERE id = ?";
+        // Ou si tu préfères une suppression physique directe : "DELETE FROM contact WHERE id = ?"
+
+        try (Connection conn = Database.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setLong(1, id);
+            int affectedRows = pstmt.executeUpdate();
+            return affectedRows > 0;
+
+        } catch (SQLException e) {
+            throw new DaoException("Erreur lors de la suppression du contact : ", e);
         }
     }
 

@@ -50,7 +50,7 @@ public class MaireService {
                         admin != null ? admin.getId() : null,
                         ActionJournal.CREATION,
                         "maire",
-                        0,
+                        maire.getContactId() != null ? maire.getContactId() : 0L,
                         "Enregistrement du maire pour la commune : " + maire.getCodeCommune()
                 );
             }

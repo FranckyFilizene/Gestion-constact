@@ -1,26 +1,31 @@
 package com.contact.controller;
 
-import  com.contact.exception.ServiceException;
-import com.contact.model.Role;
+import com.contact.exception.ServiceException;
 import com.contact.model.Utilisateur;
 import com.contact.security.Session;
 import com.contact.service.AuthService;
 import com.contact.service.UtilisateurService;
-import com.contact.utils.Validator;
 import com.contact.utils.FxUtil;
+import com.contact.utils.Validator;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Objects;
 
 public class LoginController {
 
+    @FXML private StackPane rootPane; // Conteneur principal pour le déplacement de la fenêtre
+    @FXML private Button btnClose;    // Bouton de fermeture personnalisé
     @FXML private Label lblTitre;
     @FXML private Label lblSousTitre;
     @FXML private VBox boxNomComplet;
@@ -40,25 +45,45 @@ public class LoginController {
     private final UtilisateurService utilisateurService;
     private boolean isModeInscription = false;
 
-    public LoginController(){
+    // Variables pour permettre de déplacer la fenêtre sans bordure
+    private double xOffset = 0;
+    private double yOffset = 0;
+
+    public LoginController() {
         this.authService = new AuthService();
         this.utilisateurService = new UtilisateurService();
     }
 
     @FXML
-    private void initalize(){
+    private void initialize() {
         lblMessage.setText("");
+
+        // Rendre la fenêtre déplaçable avec la souris depuis le fond
+        if (rootPane != null) {
+            rootPane.setOnMousePressed(event -> {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+            });
+
+            rootPane.setOnMouseDragged(event -> {
+                Stage stage = (Stage) rootPane.getScene().getWindow();
+                stage.setX(event.getScreenX() - xOffset);
+                stage.setY(event.getScreenY() - yOffset);
+            });
+        }
     }
 
-    /*
-    * Affiche ou masque le mot de passe en claire
-    * */
+    @FXML
+    private void handleClose() {
+        Stage stage = (Stage) btnClose.getScene().getWindow();
+        stage.close();
+    }
+
     @FXML
     private void tooglePasswordVisibility() {
         boolean afficher = chkAfficherPassword.isSelected();
 
         if (afficher) {
-            // On copie le texte du PasswordField vers le TextField visible
             txtPasswordVisible.setText(txtPassword.getText());
             txtPasswordVisible.setVisible(true);
             txtPasswordVisible.setManaged(true);
@@ -66,7 +91,6 @@ public class LoginController {
             txtPassword.setVisible(false);
             txtPassword.setManaged(false);
         } else {
-            // On copie le texte du TextField visible vers le PasswordField
             txtPassword.setText(txtPasswordVisible.getText());
             txtPassword.setVisible(true);
             txtPassword.setManaged(true);
@@ -76,15 +100,11 @@ public class LoginController {
         }
     }
 
-    /*
-    * Bascule entre le mode Connexion et le Mde INscription
-    * */
     @FXML
     private void switchMode() {
         isModeInscription = !isModeInscription;
         lblMessage.setText("");
 
-        // Affichage dynamique des champs d'inscription.
         boxNomComplet.setVisible(isModeInscription);
         boxNomComplet.setManaged(isModeInscription);
 
@@ -94,28 +114,25 @@ public class LoginController {
         if (isModeInscription) {
             lblTitre.setText("Créer un Compte");
             lblSousTitre.setText("Inscrivez-vous en tant que lecteur.");
-            btnAction.setText("S'inscrire"); // <- Assure-toi aussi de mettre "S'inscrire" ici !
+            btnAction.setText("S'inscrire");
             lblSwitchText.setText("Vous avez déjà un compte ?");
             linkSwitch.setText("Se connecter");
         } else {
             lblTitre.setText("Bienvenue !");
-            lblSousTitre.setText("Connectez-vous à votre espace de gestion."); // (ou lblSousTitre selon ton nom de variable)
+            lblSousTitre.setText("Connectez-vous à votre espace de gestion.");
             btnAction.setText("Se connecter");
             lblSwitchText.setText("Vous n'avez pas de compte ?");
             linkSwitch.setText("Créer un compte");
         }
     }
 
-    /*
-     * Gére le clic sur le bouton Principal (Connexion ou inscription)
-     * */
     @FXML
-    private void handleAction(){
+    private void handleAction() {
         lblMessage.setText("");
 
-        if(isModeInscription){
+        if (isModeInscription) {
             traiterInscription();
-        }else{
+        } else {
             traiterConnexion();
         }
     }
@@ -166,43 +183,44 @@ public class LoginController {
         }
 
         try {
-            // Appelle la méthode d'inscription publique (Rôle LECTEUR par défaut)
-            boolean inscrit = utilisateurService.inscrireLecteur(
-                    login,
-                    nomComplet,
-                    password
-            );
+            boolean inscrit = utilisateurService.inscrireLecteur(login, nomComplet, password);
 
             if (inscrit) {
                 FxUtil.showSuccess("Inscription réussie", "Votre compte lecteur a été créé. Vous pouvez maintenant vous connecter.");
                 txtPassword.clear();
                 txtPasswordVisible.clear();
                 txtConfirmPassword.clear();
-                switchMode(); // Retour automatique vers l'écran de connexion
+                switchMode();
             }
         } catch (ServiceException e) {
             lblMessage.setText(e.getMessage());
         }
     }
 
-    /**
-     * Charge la scène principale et adapte l'affichage selon le rôle (ADMIN ou LECTEUR).
-     */
-    private void ouvrirTableauDeBord(Utilisateur user){
-        try{
+    private void ouvrirTableauDeBord(Utilisateur user) {
+        try {
             FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/view/dashboard.fxml")));
             Parent root = loader.load();
 
-            // Si DashboardController possède une méthode d'initialisation des droits :
-            // DashboardController controller = loader.getController();
-            // controller.configurerInterfaceSelonRole(user);
+            // 1. Fermer la fenêtre de login actuelle
+            Stage loginStage = (Stage) btnAction.getScene().getWindow();
+            loginStage.close();
 
-            Stage stage = (Stage) btnAction.getScene().getWindow();
+            // 2. Créer une nouvelle fenêtre (Stage) pour le Dashboard avec le style transparent
+            Stage dashboardStage = new Stage();
+            dashboardStage.initStyle(StageStyle.TRANSPARENT);
+
+            // Appliquer l'icône de l'application sur le nouveau Stage
+            ajouterIconeStage(dashboardStage);
+
             Scene scene = new Scene(root, 1250, 650);
-            stage.setTitle("GCA Atsimo-Andrefana - Espace " + user.getRole().name() + " (" + user.getNomComplet() + ")");
-            stage.setScene(scene);
-            stage.setResizable(true);
-            stage.centerOnScreen();
+            scene.setFill(javafx.scene.paint.Color.TRANSPARENT); // Permet les coins arrondis du dashboard
+
+            dashboardStage.setTitle("GCA Atsimo-Andrefana - Espace " + user.getRole().name() + " (" + user.getNomComplet() + ")");
+            dashboardStage.setScene(scene);
+            dashboardStage.setResizable(true);
+            dashboardStage.centerOnScreen();
+            dashboardStage.show();
 
         } catch (IOException e) {
             FxUtil.showError("Erreur de navigation", "Impossible de charger le tableau de bord : " + e.getMessage());
@@ -210,4 +228,20 @@ public class LoginController {
         }
     }
 
+    private void ajouterIconeStage(Stage stage) {
+        try (InputStream stream = getClass().getResourceAsStream("/images/logo.png")) {
+            if (stream != null) {
+                stage.getIcons().add(new Image(stream));
+                return;
+            }
+        } catch (Exception ignored) {
+        }
+
+        try (InputStream icoStream = getClass().getResourceAsStream("/images/logo.ico")) {
+            if (icoStream != null) {
+                stage.getIcons().add(new Image(icoStream));
+            }
+        } catch (Exception ignored) {
+        }
+    }
 }

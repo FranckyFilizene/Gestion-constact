@@ -1,0 +1,255 @@
+
+/* =====================================================
+   FORMULAIRE DE CONTACT - SSD
+   Région Atsimo-Andrefana
+   ===================================================== */
+
+/* ---------- Base ---------- */
+
+.form-root {
+    -fx-background-color: #F7F9FC;
+    -fx-background-radius: 12px;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 12px;
+    -fx-text-fill: #25364B;
+}
+
+/* ---------- En-tête ---------- */
+
+.form-title {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 19px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #173658;
+}
+
+.form-subtitle {
+    -fx-font-size: 10.5px;
+    -fx-text-fill: #8492A5;
+}
+
+.btn-close {
+    -fx-background-color: transparent;
+    -fx-text-fill: #718096;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 7px;
+    -fx-padding: 4px 9px;
+    -fx-cursor: hand;
+}
+
+.btn-close:hover {
+    -fx-background-color: #FDECEC;
+    -fx-text-fill: #DC4444;
+}
+
+/* ---------- Titres de sections ---------- */
+
+.form-section-title {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2863A5;
+    -fx-padding: 0 0 5px 0;
+    -fx-border-color: transparent transparent #DCE5EF transparent;
+    -fx-border-width: 0 0 1px 0;
+}
+
+/* ---------- Libellés ---------- */
+
+.field-label {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 10.5px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #40516A;
+}
+
+/* ---------- Champs de saisie ---------- */
+
+.form-root .text-field,
+.form-root .combo-box {
+    -fx-background-color: #FFFFFF;
+    -fx-background-insets: 0;
+    -fx-background-radius: 7px;
+    -fx-border-color: #D7E0EA;
+    -fx-border-width: 1px;
+    -fx-border-radius: 7px;
+    -fx-pref-height: 32px;
+    -fx-min-height: 32px;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 11.5px;
+    -fx-text-fill: #26364A;
+    -fx-prompt-text-fill: #9AA7B7;
+}
+
+.form-root .text-field {
+    -fx-padding: 0 9px 0 9px;
+}
+
+.form-root .text-field:hover,
+.form-root .combo-box:hover {
+    -fx-border-color: #A8BDD6;
+}
+
+.form-root .text-field:focused,
+.form-root .combo-box:focused {
+    -fx-background-color: #FFFFFF;
+    -fx-background-insets: 0;
+    -fx-border-color: #3976C6;
+    -fx-border-width: 1.2px;
+}
+
+/* ---------- Champs en lecture seule ---------- */
+
+.form-root .text-field:readonly,
+.form-root .readonly-field {
+    -fx-background-color: #F0F4F8;
+    -fx-border-color: #E0E7EF;
+    -fx-text-fill: #60738B;
+    -fx-opacity: 1;
+}
+
+/* ---------- ComboBox ---------- */
+
+.form-root .combo-box .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.form-root .combo-box .arrow {
+    -fx-background-color: #71839A;
+}
+
+.form-root .combo-box .list-cell {
+    -fx-text-fill: #26364A;
+    -fx-font-size: 11.5px;
+    -fx-padding: 0 5px;
+}
+
+.form-root .combo-box-popup .list-view {
+    -fx-background-color: white;
+    -fx-border-color: #DCE5EF;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+    -fx-padding: 3px;
+}
+
+.form-root .combo-box-popup .list-view .list-cell {
+    -fx-padding: 8px 11px;
+    -fx-background-color: white;
+}
+
+.form-root .combo-box-popup .list-view .list-cell:hover,
+.form-root .combo-box-popup .list-view .list-cell:filled:selected {
+    -fx-background-color: #EAF2FD;
+    -fx-text-fill: #1E5DA8;
+}
+
+/* ---------- Zones de texte ---------- */
+
+.form-root .text-area {
+    -fx-background-color: white;
+    -fx-background-insets: 0;
+    -fx-background-radius: 7px;
+    -fx-border-color: #D7E0EA;
+    -fx-border-width: 1px;
+    -fx-border-radius: 7px;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 11.5px;
+    -fx-text-fill: #26364A;
+    -fx-prompt-text-fill: #9AA7B7;
+}
+
+.form-root .text-area .content {
+    -fx-background-color: white;
+    -fx-background-radius: 7px;
+}
+
+.form-root .text-area .text {
+    -fx-fill: #26364A;
+}
+
+.form-root .text-area:hover {
+    -fx-border-color: #A8BDD6;
+}
+
+.form-root .text-area:focused {
+    -fx-background-color: white;
+    -fx-background-insets: 0;
+    -fx-border-color: #3976C6;
+}
+
+.form-root .text-area .scroll-bar:vertical {
+    -fx-pref-width: 7px;
+    -fx-background-color: transparent;
+}
+
+.form-root .text-area .scroll-bar .thumb {
+    -fx-background-color: #CBD5E1;
+    -fx-background-radius: 10px;
+}
+
+/* ---------- Champs en erreur ---------- */
+
+.form-root .text-field.field-error,
+.form-root .combo-box.field-error,
+.form-root .text-area.field-error {
+    -fx-border-color: #DC4444;
+    -fx-border-width: 1.2px;
+}
+
+/* ---------- Boutons d'action ---------- */
+
+.btn-cancel,
+.btn-save {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 11.5px;
+    -fx-pref-height: 34px;
+    -fx-min-height: 34px;
+    -fx-background-radius: 7px;
+    -fx-border-radius: 7px;
+    -fx-cursor: hand;
+    -fx-padding: 0 15px;
+}
+
+.btn-cancel {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #53647A;
+    -fx-border-color: #D7E0EA;
+    -fx-border-width: 1px;
+}
+
+.btn-cancel:hover {
+    -fx-background-color: #EDF1F6;
+    -fx-border-color: #C6D2E0;
+}
+
+.btn-save {
+    -fx-background-color: #245FA8;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+    -fx-border-color: #245FA8;
+    -fx-effect: dropshadow(gaussian, rgba(36, 95, 168, 0.20), 6, 0, 0, 2);
+}
+
+.btn-save:hover {
+    -fx-background-color: #1C4F90;
+    -fx-border-color: #1C4F90;
+}
+
+.btn-save:pressed {
+    -fx-background-color: #173F73;
+    -fx-effect: none;
+}
+
+.btn-cancel:focused,
+.btn-save:focused,
+.btn-close:focused {
+    -fx-background-insets: 0;
+}
+
+/* ---------- Désactivation ---------- */
+
+.form-root .combo-box:disabled {
+    -fx-opacity: 0.65;
+    -fx-background-color: #F0F3F7;
+}

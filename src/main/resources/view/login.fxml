@@ -2,200 +2,164 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.CheckBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<StackPane prefHeight="600.0" prefWidth="950.0"
+<StackPane fx:id="rootPane"
+           prefHeight="520.0"
+           prefWidth="900.0"
            styleClass="root-pane"
            stylesheets="@../css/login.css"
-           xmlns="http://javafx.com/javafx/26"
+           xmlns="http://javafx.com/javafx/25.0.4"
            xmlns:fx="http://javafx.com/fxml/1"
            fx:controller="com.contact.controller.LoginController">
 
     <children>
 
-        <HBox maxWidth="850.0" maxHeight="490.0"
+        <!-- CONTENEUR PRINCIPAL (HBox gauche: Bleu | droite: Blanc avec le bouton X) -->
+        <HBox maxHeight="520.0"
+              maxWidth="900.0"
               styleClass="main-container">
 
-            <!-- PANNEAU GAUCHE -->
+            <!-- =====================================
+                 PANNEAU GAUCHE : IDENTITE SSD
+            ====================================== -->
             <VBox alignment="CENTER_LEFT"
-                  prefWidth="360.0"
-                  spacing="22.0"
+                  prefWidth="380.0"
+                  spacing="20.0"
                   styleClass="brand-panel">
 
                 <padding>
-                    <Insets top="45" right="35"
-                            bottom="45" left="35"/>
+                    <Insets top="35" right="35" bottom="35" left="35"/>
                 </padding>
 
                 <children>
+                    <StackPane styleClass="brand-icon-container">
+                        <FontIcon iconLiteral="fas-shield-alt"
+                                  iconSize="44"
+                                  styleClass="brand-shield-icon"/>
+                    </StackPane>
 
-                    <Label text="GCA"
-                           styleClass="brand-logo"/>
+                    <VBox spacing="8.0">
+                        <Label text="SYSTÈME DE" styleClass="brand-title-small"/>
+                        <Label text="SÉCURITÉ DINA" styleClass="brand-title"/>
+                        <Label text="RÉGION ATSIMO-ANDREFANA" styleClass="brand-subtitle"/>
+                    </VBox>
 
-                    <Label text="GESTION DES CONTACTS"
-                           wrapText="true"
-                           styleClass="brand-title"/>
-
-                    <Label text="RÉGION ATSIMO-ANDREFANA"
-                           styleClass="brand-subtitle"/>
-
-                    <Label text="Une plateforme centralisée pour
-gérer, organiser et retrouver
-facilement vos contacts administratifs."
+                    <Label text="Une plateforme centralisée pour gérer, organiser et sécuriser les contacts territoriaux de la région."
                            wrapText="true"
                            styleClass="brand-description"/>
 
-                    <VBox spacing="12.0"
-                          styleClass="feature-list">
-
-                        <Label text="✓  Gestion des contacts"
-                               styleClass="feature-label"/>
-
-                        <Label text="✓  Organisation administrative"
-                               styleClass="feature-label"/>
-
-                        <Label text="✓  Recherche rapide"
-                               styleClass="feature-label"/>
-
-                        <Label text="✓  Gestion sécurisée"
-                               styleClass="feature-label"/>
-
+                    <VBox spacing="12.0" styleClass="feature-list">
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                            <FontIcon iconLiteral="fas-check-circle" iconSize="14" styleClass="feature-icon"/>
+                            <Label text="Gestion sécurisée des DINA" styleClass="feature-label"/>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                            <FontIcon iconLiteral="fas-check-circle" iconSize="14" styleClass="feature-icon"/>
+                            <Label text="Organisation territoriale" styleClass="feature-label"/>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                            <FontIcon iconLiteral="fas-check-circle" iconSize="14" styleClass="feature-icon"/>
+                            <Label text="Recherche et filtres rapides" styleClass="feature-label"/>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                            <FontIcon iconLiteral="fas-check-circle" iconSize="14" styleClass="feature-icon"/>
+                            <Label text="Suivi et contrôle des effectifs" styleClass="feature-label"/>
+                        </HBox>
                     </VBox>
 
-                    <Label text="© 2026 - Région Atsimo-Andrefana"
-                           styleClass="copyright-label"/>
+                    <VBox VBox.vgrow="ALWAYS"/>
 
+                    <VBox spacing="4.0" styleClass="brand-footer">
+                        <Label text="PLATEFORME ADMINISTRATIVE" styleClass="footer-caption"/>
+                        <Label text="© 2026 Région Atsimo-Andrefana" styleClass="copyright-label"/>
+                    </VBox>
                 </children>
             </VBox>
 
-            <!-- PANNEAU DROIT -->
-            <VBox alignment="CENTER"
-                  prefWidth="490.0"
-                  spacing="17.0"
-                  styleClass="form-panel">
 
-                <padding>
-                    <Insets top="40" right="55"
-                            bottom="40" left="55"/>
-                </padding>
-
+            <!-- =====================================
+                 PANNEAU DROIT : FORMULAIRE (AVEC BOUTON X VISIBLE)
+            ====================================== -->
+            <AnchorPane prefWidth="520.0" styleClass="form-panel-container">
                 <children>
+                    <!-- VBOX DU FORMULAIRE -->
+                    <VBox alignment="CENTER"
+                          spacing="16.0"
+                          styleClass="form-panel"
+                          AnchorPane.topAnchor="0.0"
+                          AnchorPane.bottomAnchor="0.0"
+                          AnchorPane.leftAnchor="0.0"
+                          AnchorPane.rightAnchor="0.0">
 
-                    <VBox spacing="7.0">
-                        <Label fx:id="lblTitre"
-                               text="Bienvenue !"
-                               styleClass="title-label"/>
+                        <padding>
+                            <Insets top="30" right="50" bottom="30" left="50"/>
+                        </padding>
 
-                        <Label fx:id="lblSousTitre"
-                               text="Connectez-vous à votre espace de gestion."
-                               wrapText="true"
-                               styleClass="subtitle-label"/>
+                        <children>
+                            <VBox spacing="6.0" styleClass="form-heading">
+                                <Label fx:id="lblTitre" text="Bienvenue !" styleClass="title-label"/>
+                                <Label fx:id="lblSousTitre" text="Connectez-vous à votre espace de gestion." wrapText="true" styleClass="subtitle-label"/>
+                            </VBox>
+
+                            <VBox fx:id="boxNomComplet" managed="false" visible="false" spacing="6.0" styleClass="form-field">
+                                <Label text="Nom complet" styleClass="field-label"/>
+                                <TextField fx:id="txtNomComplet" promptText="Ex : Jean Rakoto" prefHeight="42.0" styleClass="input-field"/>
+                            </VBox>
+
+                            <VBox spacing="6.0" styleClass="form-field">
+                                <Label text="Identifiant" styleClass="field-label"/>
+                                <TextField fx:id="txtLogin" prefHeight="42.0" promptText="Saisissez votre identifiant" styleClass="input-field"/>
+                            </VBox>
+
+                            <VBox spacing="6.0" styleClass="form-field">
+                                <Label text="Mot de passe" styleClass="field-label"/>
+                                <StackPane styleClass="password-container">
+                                    <PasswordField fx:id="txtPassword" prefHeight="42.0" promptText="Saisissez votre mot de passe" styleClass="input-field"/>
+                                    <TextField fx:id="txtPasswordVisible" managed="false" visible="false" prefHeight="42.0" promptText="Saisissez votre mot de passe" styleClass="input-field"/>
+                                </StackPane>
+                                <CheckBox fx:id="chkAfficherPassword" onAction="#tooglePasswordVisibility" text="Afficher le mot de passe" styleClass="password-checkbox"/>
+                            </VBox>
+
+                            <VBox fx:id="boxConfirmPassword" managed="false" visible="false" spacing="6.0" styleClass="form-field">
+                                <Label text="Confirmer le mot de passe" styleClass="field-label"/>
+                                <PasswordField fx:id="txtConfirmPassword" prefHeight="42.0" promptText="Confirmez votre mot de passe" styleClass="input-field"/>
+                            </VBox>
+
+                            <Label fx:id="lblMessage" wrapText="true" maxWidth="Infinity" styleClass="error-label"/>
+
+                            <Button fx:id="btnAction" text="Se connecter" maxWidth="Infinity" prefHeight="45.0" onAction="#handleAction" styleClass="primary-button"/>
+
+                            <HBox alignment="CENTER" spacing="5.0">
+                                <Label fx:id="lblSwitchText" text="Vous n'avez pas de compte ?" styleClass="switch-label"/>
+                                <Hyperlink fx:id="linkSwitch" text="Créer un compte" onAction="#switchMode" styleClass="switch-link"/>
+                            </HBox>
+                        </children>
                     </VBox>
 
-                    <!-- NOM COMPLET -->
-                    <VBox fx:id="boxNomComplet"
-                          managed="false"
-                          visible="false"
-                          spacing="7.0">
-
-                        <Label text="Nom complet"
-                               styleClass="field-label"/>
-
-                        <TextField fx:id="txtNomComplet"
-                                   promptText="Ex : Jean Rakoto"
-                                   styleClass="input-field"/>
-
-                    </VBox>
-
-                    <!-- IDENTIFIANT -->
-                    <VBox spacing="7.0">
-                        <Label text="Identifiant"
-                               styleClass="field-label"/>
-
-                        <TextField fx:id="txtLogin"
-                                   prefHeight="46.0"
-                                   promptText="Saisissez votre identifiant"
-                                   styleClass="input-field"/>
-                    </VBox>
-
-                    <!-- MOT DE PASSE -->
-                    <!-- MOT DE PASSE -->
-                    <VBox spacing="7.0">
-                        <Label text="Mot de passe"
-                               styleClass="field-label"/>
-
-                        <StackPane>
-                            <!-- Mot de passe masqué -->
-                            <PasswordField fx:id="txtPassword"
-                                           prefHeight="46.0"
-                                           promptText="Saisissez votre mot de passe"
-                                           styleClass="input-field"/>
-
-                            <!-- Mot de passe visible -->
-                            <TextField fx:id="txtPasswordVisible"
-                                       prefHeight="46.0"
-                                       promptText="Saisissez votre mot de passe"
-                                       styleClass="input-field"
-                                       visible="false"
-                                       managed="false"/>
-                        </StackPane>
-
-                        <!-- CHECKBOX -->
-                        <CheckBox fx:id="chkAfficherPassword"
-                                  text="Afficher le mot de passe"
-                                  onAction="#tooglePasswordVisibility"
-                                  styleClass="password-checkbox"/>
-                    </VBox>
-
-                    <!-- À ajouter juste après le VBox du MOT DE PASSE -->
-                    <VBox fx:id="boxConfirmPassword"
-                          managed="false"
-                          visible="false"
-                          spacing="7.0">
-                        <Label text="Confirmer le mot de passe"
-                               styleClass="field-label"/>
-                        <PasswordField fx:id="txtConfirmPassword"
-                                       prefHeight="46.0"
-                                       promptText="Confirmez votre mot de passe"
-                                       styleClass="input-field"/>
-                    </VBox>
-
-                    <!-- MESSAGE -->
-                    <Label fx:id="lblMessage"
-                           wrapText="true"
-                           styleClass="error-label"/>
-
-                    <!-- BOUTON -->
-                    <Button fx:id="btnAction"
-                            text="Se connecter"
-                            onAction="#handleAction"
-                            maxWidth="Infinity"
-                            prefHeight="48.0"
-                            styleClass="primary-button"/>
-
-                    <!-- INSCRIPTION -->
-                    <HBox alignment="CENTER" spacing="5.0">
-                        <Label fx:id="lblSwitchText"
-                               text="Vous n'avez pas de compte ?"
-                               styleClass="switch-label"/>
-
-                        <Hyperlink fx:id="linkSwitch"
-                                   text="Créer un compte"
-                                   onAction="#switchMode"
-                                   styleClass="switch-link"/>
-                    </HBox>
-
+                    <Button fx:id="btnClose"
+                            onAction="#handleClose"
+                            style="-fx-background-color: transparent; -fx-cursor: hand;"
+                            AnchorPane.topAnchor="10.0"
+                            AnchorPane.rightAnchor="12.0">
+                        <graphic>
+                            <FontIcon iconLiteral="fas-times" iconSize="16" iconColor="#64748b"/>
+                        </graphic>
+                    </Button>
                 </children>
-            </VBox>
+            </AnchorPane>
 
         </HBox>
 
     </children>
+
 </StackPane>
